@@ -1,0 +1,116 @@
+/*
+
+Initial database schema for the Coldreader application.
+
+
+
+*/
+
+CREATE TABLE `aspect_groups` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `group_name` text,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `aspect_types` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `aspect_name` text,
+  `aspect_description` text,
+  `flavor` text,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `is_viewable` tinyint(1) NOT NULL DEFAULT '1',
+  `markdown` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `aspect_types_aspect_groups` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `aspect_type` int(11) DEFAULT NULL,
+  `aspect_group` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `aspects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `aspect_type` int(11) DEFAULT NULL,
+  `aspect_data` mediumtext,
+  `aspect_binary` text,
+  `predicted_accuracy` float DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `aspect_notes` text,
+  `aspect_source` text,
+  `hidden` int(11) DEFAULT '0',
+  `hash` text,
+  `last_parsed` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `aspect_type` (`aspect_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=28917 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message` text NOT NULL,
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `relationships` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `date_created` datetime DEFAULT NULL,
+  `date_updated` datetime DEFAULT NULL,
+  `subject_id_1` int(11) DEFAULT NULL,
+  `subject_id_2` int(11) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  KEY `subject_id_1` (`subject_id_1`,`subject_id_2`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `subject_types` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `type_name` text,
+  `type_description` text,
+  `aspect_group` int(11) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `subjects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `subject_name` text,
+  `subject_type` int(11) DEFAULT NULL,
+  `date_created` datetime DEFAULT NULL,
+  `date_updated` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subject_type` (`subject_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3938 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `subjects_aspects` (
+  `subject_id` int(11) unsigned NOT NULL,
+  `aspect_id` int(11) NOT NULL,
+  KEY `subject_id` (`subject_id`,`aspect_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email_address` text NOT NULL,
+  `date_registered` datetime NOT NULL,
+  `nonce` text NOT NULL,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `role` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
