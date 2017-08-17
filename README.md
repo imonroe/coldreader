@@ -2,6 +2,8 @@ Coldreader
 
 README:
 
+Preparing to update.
+
 *** IMPORTANT NOTE: This is ALPHA code.  Please, please don't use it on production systems. I'm publishing it on Github as a code sample and for version control, not as a finished application.  I can't be responsible for evils that befall you, should you ignore this warning. ***
 
 Coldreader is designed to be a personal content management system.  It is particularly well-suited to users who:
