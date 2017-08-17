@@ -1,8 +1,0 @@
-{
-    "require": {
-		"aylien/textapi": "0.3.*",
-		"fguillot/picofeed": "@stable",
-        	"leg/simhash-php": "^1.0",
-		"verot/class.upload.php": "dev-master"
-    }
-}
