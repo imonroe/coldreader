@@ -37,7 +37,6 @@ Via Composer
 ``` bash
 $ composer require imonroe/crps
 ```
-```
 
 ## Developing Custom Aspect Types
 
