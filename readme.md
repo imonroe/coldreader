@@ -78,7 +78,7 @@ A text field that holds an optional title for this aspect.
 - public int folded
 0 = not folded, 1 = folded.
 
-#####Useful Methods:
+##### Useful Methods:
     
 - public function notes_schema()
 
