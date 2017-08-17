@@ -35,7 +35,7 @@ Use cases:
 Via Composer
 
 ``` bash
-$ composer require imonroe/crps
+$ composer create-project imonroe/coldreader
 ```
 
 ## Developing Custom Aspect Types
