@@ -14,15 +14,15 @@ A Subject can have an arbitrary number of Aspects.  Aspects are like a single pi
 
 Use cases:
 
-*Project management system
-*TODO list
-*Personal CRM system -- stop forgetting your girlfriend's parents names, your friend's anniversary, etc.
-*Manage your collection of media
-*Track your notes and references as you research new things
-*Create a knowledgebase of problems you have previously solved
-*Keep a library of your favorite recipes
-*API test bed - quickly add new features by implementing an API and using your exising data
-*Organize your life however you like
+- Project management system
+- TODO list
+- Personal CRM system -- stop forgetting your girlfriend's parents names, your friend's anniversary, etc.
+- Manage your collection of media
+- Track your notes and references as you research new things
+- Create a knowledgebase of problems you have previously solved
+- Keep a library of your favorite recipes
+- API test bed - quickly add new features by implementing an API and using your exising data
+- Organize your life however you like
 
 
 
