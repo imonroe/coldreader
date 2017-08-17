@@ -44,71 +44,71 @@ $ composer require imonroe/crps
 
 #### Properties:
 
-public int id
+- public int id
 The ID of this aspect
 
-public int aspect_type
+- public int aspect_type
 The aspect_type id.  This determines the aspect_type we load this as.
 
-public longtext aspect_data
+- public longtext aspect_data
 This is where the aspect's data is actually stored.  Note it's a longtext field.  Any data that an aspect stores, should be in text. Default is UTF-8
 
-public mediumtext aspect_notes
+- public mediumtext aspect_notes
 aspect_notes holds an array of configuration options for this array.  This is stored in JSON format in the database. The schema for this data is specified in the notes_schema() function below.
 
-public text aspect_source
+- public text aspect_source
 An arbitrary text field.  This exists so you can record where and when you collected this information.
 
-public int hidden
+- public int hidden
 0 = hidden, 1 = visible.
 
-public datetime last_parsed
+- public datetime last_parsed
 The last time the parse() function was triggered.  See parse() below.
 
-public timestamp created_at
-public timestamp updated_at
+- public timestamp created_at
+- public timestamp updated_at
 The standard Laravel timestamps
 
-public int display_weight
+- public int display_weight
 Display weight determines the order aspects are displayed. Higher values push aspects down, lower values let them float up.  Default is 100.
 
-public text title
+- public text title
 A text field that holds an optional title for this aspect.
 
-public int folded
+- public int folded
 0 = not folded, 1 = folded.
 
-Useful Methods:
+#####Useful Methods:
     
-public function notes_schema()
+- public function notes_schema()
 
-public function isSubclass()
+- public function isSubclass()
 
-public function update_aspect()
+- public function update_aspect()
 
-public function aspect_type()
+- public function aspect_type()
 
-public function notes_fields()
+- public function notes_fields()
 
-public function create_form($subject_id, $aspect_type_id=null)
+- public function create_form($subject_id, $aspect_type_id=null)
 
-public function edit_form($id)
+- public function edit_form($id)
 
-public function subjects()
+- public function subjects()
 
-public function display_aspect()
+- public function display_aspect()
 
-public function parse()
+- public function parse()
 
-public function pre_save(Request $request)
+- public function pre_save(Request $request)
 
-public function post_save(Request $request)
+- public function post_save(Request $request)
 
-public function pre_update(Request $request)
+- public function pre_update(Request $request)
 
-public function post_update(Request $request)
+- public function post_update(Request $request)
 
-public function pre_delete(Request $request)
+- public function pre_delete(Request $request)
 
 
 Upon creating a custom Aspect Type, boilerplate code will be added to the file app/CustomAspects.php
