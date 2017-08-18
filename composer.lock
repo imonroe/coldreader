@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9022b1b249ca825d1f5355e7bcb5289a",
-    "content-hash": "0ba9a25a8f9545ff0b7994b3110ade80",
+    "hash": "0537f9b3458958703307141116c52460",
+    "content-hash": "6a410d83d42e9310d29e93917a5686b8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -909,16 +909,16 @@
         },
         {
             "name": "imonroe/crps",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/crps.git",
-                "reference": "89e524674e9af1d656052db4e4d732e12ab96d55"
+                "reference": "1857e4bb3b0acfe7ecfb83c3d614d95a154035a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/crps/zipball/89e524674e9af1d656052db4e4d732e12ab96d55",
-                "reference": "89e524674e9af1d656052db4e4d732e12ab96d55",
+                "url": "https://api.github.com/repos/imonroe/crps/zipball/1857e4bb3b0acfe7ecfb83c3d614d95a154035a4",
+                "reference": "1857e4bb3b0acfe7ecfb83c3d614d95a154035a4",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
                 "crps",
                 "imonroe"
             ],
-            "time": "2017-08-10 22:08:08"
+            "time": "2017-08-17 22:25:49"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2100,6 +2100,48 @@
                 "uuid"
             ],
             "time": "2017-08-04 13:39:04"
+        },
+        {
+            "name": "subdesign/laravel-cli-user",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/subdesign/laravel-cli-user.git",
+                "reference": "47cf04868c22dabb5d8de7b560e10d47703ad9d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/subdesign/laravel-cli-user/zipball/47cf04868c22dabb5d8de7b560e10d47703ad9d0",
+                "reference": "47cf04868c22dabb5d8de7b560e10d47703ad9d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4.0 || ^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Subdesign\\LaravelCliUser\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barna Szalai",
+                    "email": "szalai.b@gmail.com"
+                }
+            ],
+            "description": "Quickly create users on command line",
+            "homepage": "https://github.com/subdesign/laravel-cli-user",
+            "keywords": [
+                "cli",
+                "laravel",
+                "user-manager"
+            ],
+            "time": "2017-05-07 09:56:01"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -187,8 +187,7 @@ return [
 		// Markdown service profider
 		GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 		
-		// Artisan make:user
-		Dyrynda\Artisan\MakeUserServiceProvider::class,
+		Subdesign\LaravelCliUser\CliUserServiceProvider::class,
     ],
 
     /*
