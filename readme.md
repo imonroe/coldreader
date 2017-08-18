@@ -1,6 +1,8 @@
 # Coldreader
 
-[![Latest Version on Packagist[ico-version]]] [![Total Downloads[ico-downloads]]
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Total Downloads][ico-downloads]][link-downloads]
 
 Coldreader is a personal information management software package. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.4, Bootstrap, and JQuery.
 
