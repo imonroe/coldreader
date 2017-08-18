@@ -1,7 +1,6 @@
 # Coldreader
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Version on Packagist[ico-version]]] [![Total Downloads[ico-downloads]]
 
 Coldreader is a personal information management software package. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.4, Bootstrap, and JQuery.
 
@@ -37,6 +36,19 @@ Via Composer
 ``` bash
 $ composer create-project imonroe/coldreader
 ```
+Via Git
+``` bash
+$ git clone https://github.com/imonroe/coldreader.git
+$ cd coldreader
+$ composer update
+$ cp .env.example .env
+```
+Then edit your .env file to add your database credentials
+``` bash
+$ php artisan migrate
+$ php artisan cliuser:create
+```
+Fire up your web browser and hit the site.  You can log in with the account you just created.
 
 ## Developing Custom Aspect Types
 

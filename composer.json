@@ -10,7 +10,7 @@
         "dyrynda/laravel-make-user": "~1.0",
         "graham-campbell/markdown": "^7.1",
         "imonroe/ana": "^1.0",
-        "imonroe/crps": "^1.0.2",
+        "imonroe/crps": "1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
