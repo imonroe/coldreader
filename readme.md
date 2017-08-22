@@ -49,6 +49,7 @@ Then edit your .env file to add your database credentials
 $ php artisan migrate
 $ php artisan cliuser:create
 $ php artisan storage:link
+$ php artisan vendor:publish
 ```
 Fire up your web browser and hit the site.  You can log in with the account you just created.
 
