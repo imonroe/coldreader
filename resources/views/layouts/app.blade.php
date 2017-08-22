@@ -43,19 +43,10 @@
 	<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=@php echo( env('TINY_MCE_API_KEY')); @endphp"></script>
 	<!-- JQuery UI Touch Punch -->
 	<script src="/js/jquery.ui.touch-punch.min.js"></script>
-	<!-- SketchyPad, for drawings 
-	<script src="/js/sketch_pad/sketchyPad/smooth.js"></script>
-    <script src="/js/sketch_pad/sketchyPad/sketchyPad.js"></script>
-	-->
-	<!-- stylesheet -->
-    <link href="/js/literally_canvas/_assets/literallycanvas.css" rel="stylesheet">
 
     <!-- dependency: React.js -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-with-addons.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-
-    <!-- Literally Canvas -->
-    <script src="/js/literally_canvas/_js_libs/literallycanvas.js"></script>
 
 	<!-- FancyTree -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.23.0/jquery.fancytree-all.min.js"></script>
@@ -93,7 +84,6 @@
                     <div class="btn-group" role="group">
 					<ul class="nav navbar-nav">
 						<li> <a href="/home" class="btn btn-default">Home</a> </li>
-						<li> <a href="/news" class="btn btn-default">News</a> </li>
                         <li> <a href="/subject_type" class="btn btn-default">Subject Types</a> </li>
 						<li> <a href="/aspect_type" class="btn btn-default">Aspect Types</a> </li>
                     </ul>
