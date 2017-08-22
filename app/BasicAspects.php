@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use imonroe\crps\Aspect;
 use imonroe\crps\AspectType;
 use imonroe\crps\AspectFactory;
@@ -76,8 +77,9 @@ class FileUploadAspect extends Aspect{
 	}
 	public function display_aspect(){
 		$output = '<div class="aspect_type-'.$this->aspect_type()->id.'">';
-		$output .= '<h4>'.$this->title.'</h4>';
-		$output .= '<p>Description: '.$this->aspect_data.'</p>'.PHP_EOL;
+		if (!empty($this->aspect_data)){
+			$output .= '<p>Description: '.$this->aspect_data.'</p>'.PHP_EOL;
+		}
 		$output .= '<p><a href="'.$this->aspect_source.'">'.$this->title.'</a></p>';
 		$output .= '</div>';
 		return $output;
@@ -127,8 +129,7 @@ class ImageAspect extends FileUploadAspect{
 		if ( !empty($settings['css_class']) ){
 			$css_size .= ' class="'.$settings['css_class'].'"';
 		}
-		$output = '<h4>'.$this->title.'</h4>';
-		$output .= '<img src="'.$this->aspect_source.'" '.$css_size.' />';
+		$output = '<img src="'.$this->aspect_source.'" '.$css_size.' />';
 		$output .= '<div class="image_caption">'.$this->aspect_data.'</div>';
 		$output .= '<p><a href="'.$this->aspect_source.'">Uploaded File</a></p>';
 
@@ -205,7 +206,7 @@ class MarkdownTextAspect extends UnformattedTextAspect{
 		return parent::edit_form($id);
 	}
 	public function display_aspect(){
-		$output = parent::display_aspect();
+		$output = Markdown::convertToHtml($this->aspect_data);
 		return $output;
 	}
 	public function parse(){}
