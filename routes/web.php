@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,32 +82,31 @@ Route::post('register', [
 |--------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['auth', 'web']], function () {
-	// In this group, we have all the routes that we want to have authentication on, e.g., ALMOST ALL OF THEM.
-	Route::get('/home', 'HomeController@index')->name('home');
+    // In this group, we have all the routes that we want to have authentication on, e.g., ALMOST ALL OF THEM.
+    Route::get('/home', 'HomeController@index')->name('home');
 
-	// Debuggin routes
-	Route::get('/debug', function(){
-		//Mail::to( Auth::user()->email )->send(new \App\Mail\UpdateEmail('Routefile test message'));
-		//$test_subject = new imonroe\crps\Subject;
-		//dd($test_subject);
-		echo phpinfo();
-	});
-	Route::get('/log', function(){
-		return view('log', ['log_items' => '']);
-	});
+    // Debuggin routes
+    Route::get('/debug', function () {
+        //Mail::to( Auth::user()->email )->send(new \App\Mail\UpdateEmail('Routefile test message'));
+        //$test_subject = new imonroe\crps\Subject;
+        //dd($test_subject);
+        echo phpinfo();
+    });
+    Route::get('/log', function () {
+        return view('log', ['log_items' => '']);
+    });
 
-	// Google API routes
-	Route::get('gtasks/{task_list_id}', 'GoogleController@display_task_list');
-	Route::get('gtasks/', 'GoogleController@display_task_list');
-	Route::post('gtasks', 'GoogleController@edit_task_list');
-	Route::get('gcal', 'GoogleController@get_calendar');
-	Route::post('gcal', 'GoogleController@edit_calendar');
+    // Google API routes
+    Route::get('gtasks/{task_list_id}', 'GoogleController@display_task_list');
+    Route::get('gtasks/', 'GoogleController@display_task_list');
+    Route::post('gtasks', 'GoogleController@edit_task_list');
+    Route::get('gcal', 'GoogleController@get_calendar');
+    Route::post('gcal', 'GoogleController@edit_calendar');
 
-	// News Routes
-	Route::get('/news', 'RSSController@generate_news_page');
-	Route::post('/news/get_feed', 'RSSController@get_feed_via_ajax');
+    // News Routes
+    Route::get('/news', 'RSSController@generate_news_page');
+    Route::post('/news/get_feed', 'RSSController@get_feed_via_ajax');
 
-	// Search Routes:
-	Route::post('/search/results', 'SearchController@show_search_results');
-
+    // Search Routes:
+    Route::post('/search/results', 'SearchController@show_search_results');
 });  // finished with authenticated routes.

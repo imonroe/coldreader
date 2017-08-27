@@ -13,16 +13,19 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(){ }
+    public function __construct()
+    {
+    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request){
-		$homepage_aspects_config = Subject::where('name', '=', 'Front Page Aspects')->first();
-		$homepage_aspects = $homepage_aspects_config->aspects();    	
-		return view('home', ['homepage_aspects' => $homepage_aspects_config]);
+    public function index(Request $request)
+    {
+        $homepage_aspects_config = Subject::where('name', '=', 'Front Page Aspects')->first();
+        $homepage_aspects = $homepage_aspects_config->aspects();
+        return view('home', ['homepage_aspects' => $homepage_aspects_config]);
     }
 }
