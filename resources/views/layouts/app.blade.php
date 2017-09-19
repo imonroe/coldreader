@@ -19,8 +19,8 @@
     <title>{{ config('app.title') }}</title>
 
     <!-- Styles -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
@@ -31,101 +31,51 @@
         ]) !!};
     </script>
 
-
-
-	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 	<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
 	<!-- fontawesome -->
 	<script src="https://use.fontawesome.com/c13fe9b096.js"></script>
+
 	<!-- TinyMCE WYSIWYG editor -->
 	<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=@php echo( env('TINY_MCE_API_KEY')); @endphp"></script>
 	<!-- JQuery UI Touch Punch -->
 	<script src="/js/jquery.ui.touch-punch.min.js"></script>
 
+	<!-- stylesheet -->
+    <link href="/js/literally_canvas/_assets/literallycanvas.css" rel="stylesheet">
+
     <!-- dependency: React.js -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-with-addons.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+
+    <!-- Literally Canvas -->
+    <script src="/js/literally_canvas/_js_libs/literallycanvas.js"></script>
 
 	<!-- FancyTree -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.23.0/jquery.fancytree-all.min.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.23.0/skin-bootstrap/ui.fancytree.min.css" rel="stylesheet">
 
+	<!-- Custom JS -->
+	<script src="{{ asset('js/coldreader.js') }}?@php echo(time()); @endphp" type="text/javascript"></script>
+
 
 	<!-- my styles should override anything -->
-	<link href="{{ asset('css/coldreader.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/coldreader.css') }}?@php echo(time()); @endphp" rel="stylesheet">
 
 
 </head>
 <body>
-    <div id="app">
+    <div id="application-container">
 		@if (Auth::check())
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                       {{ config('app.title') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <div class="btn-group" role="group">
-					<ul class="nav navbar-nav">
-						<li> <a href="/home" class="btn btn-default">Home</a> </li>
-                        <li> <a href="/subject_type" class="btn btn-default">Subject Types</a> </li>
-						<li> <a href="/aspect_type" class="btn btn-default">Aspect Types</a> </li>
-                    </ul>
-					<span style="float:left; margin-left:5px; margin-top:5px;">
-					@include('search.search_form')
-					</span>
-					</div>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <!-- <li><a href="/auth/google/">Login</a></li> -->
-							  <li><a href="/login">Login</a></li>
-                            <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   <img src="{!!  $user_info['avatar'] !!}" style="width:24px;" />
-									{{ Auth::user()->name }}
-									<span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+			@include('layouts.navbar')
 		@else
 		<div class="container">
     		<div class="row">
@@ -134,35 +84,40 @@
 		</div>
 		@endif
 
-		<div class="container">
+		<div class="container-fluid">
     		<div class="row">
 
-		@if(Session::has('message'))
-			<div class="alert alert-info" role="alert">
-			{{Session::get('message')}}
+				@if(Session::has('message'))
+				<div class="mx-auto col-xs-12 col-lg-8 alert alert-info alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+					<h5 class="text-center">{{Session::get('message')}}</h5>
+				</div>
+				@endif
+
+				@if(Session::has('error'))
+				<div class="mx-auto col-xs-12 col-lg-8 alert alert-danger alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+					<h5 class="text-center">{{Session::get('error')}}</h5>
+				</div>
+				@endif
+
+				<div id="main_page_panel" class="panel panel-default" style="margin:1em; width:100%">
+					@yield('content')	
+				</div>
+
 			</div>
-        @endif
 
-		@if(Session::has('error'))
-			<div class="alert alert-danger" role="alert">
-			{{Session::get('error')}}
-			</div>
-        @endif
-
-			<div class="col-md-8 col-md-offset-2">
-
-			</div>
-
-			</div>
-		</div>
-
-        @yield('content')
     </div>
+	</div> <!-- end application-container" -->
+	
+	<div id="modal-container" style="display:none;"> x </div>
 
 	<!-- Scripts -->
 	<script src="{{ asset('js/app.js') }}"></script>
-		<!-- Custom JS -->
-	<script src="{{ asset('js/coldreader.js') }}" type="text/javascript"></script>
 
 </body>
 </html>

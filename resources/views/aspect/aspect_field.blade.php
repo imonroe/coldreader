@@ -1,34 +1,37 @@
-<div id="aspect_id-{!! $aspect->id !!}">
+<div class="aspect_display col col-xs-12 col-sm-12 col-md-6 col-xl-4" style="min-width:256px;"  id="aspect_id-{!! $aspect->id !!}">
 	<div class="panel panel-default">
-		<div class="panel-controls" style="float:right; margin:5px; clear:both; display:block;"> 
-			<span id="reorder-{!! $aspect->id !!}" style="margin:10px; display:none;" class="reorder-handle"> 
-				<i class="fa fa-arrows" aria-hidden="true" ></i>
-			</span>
+			<!-- style="min-width:256px; max-width:640px" -->
+		<div class="panel-header">
+			<div class="panel-controls" style="float:right; margin:-.3em 1em 1em 1em; clear:none; display:block;"> 
+				<span id="reorder-{!! $aspect->id !!}" style="margin:1em; display:none;" class="reorder-handle"> 
+					<i class="fa fa-arrows" aria-hidden="true" ></i>
+				</span>
 
-			@if ( $aspect->folded )
-			<span id="roll-up-{!! $aspect->id !!}" style="margin:10px;display:none;"> 
-				<i class="fa fa-caret-down" aria-hidden="true"></i>
-			</span>
-			<span id="roll-down-{!! $aspect->id !!}" style="margin:10px;"> 
-				<i class="fa fa-caret-left" aria-hidden="true"></i>
-			</span>
-			@else
-			<span id="roll-up-{!! $aspect->id !!}" style="margin:10px;"> 
-				<i class="fa fa-caret-down" aria-hidden="true"></i>
-			</span>
-			<span id="roll-down-{!! $aspect->id !!}" style="margin:10px; display:none;"> 
-				<i class="fa fa-caret-left" aria-hidden="true"></i>
-			</span>
-			@endif
-
-		</div>
-
-		<div class="panel-body">
+				@if ( $aspect->folded )
+				<span id="roll-up-{!! $aspect->id !!}" style="margin:1em; display:none;"> 
+					<i class="fa fa-caret-down" aria-hidden="true"></i>
+				</span>
+				<span id="roll-down-{!! $aspect->id !!}" style="margin:1em;"> 
+					<i class="fa fa-caret-left" aria-hidden="true"></i>
+				</span>
+				@else
+				<span id="roll-up-{!! $aspect->id !!}" style="margin:1em;"> 
+					<i class="fa fa-caret-down" aria-hidden="true"></i>
+				</span>
+				<span id="roll-down-{!! $aspect->id !!}" style="margin:1em; display:none;"> 
+					<i class="fa fa-caret-left" aria-hidden="true"></i>
+				</span>
+				@endif
+			</div>
 
 			@if ( !empty($aspect->title) )
-			<h4> {{{ $aspect->title }}} </h4> 
+			<h4 style="margin-left:1em;"> {{{ $aspect->title }}}</h4>
+			@else
+			<h4>&nbsp;</h4>
 			@endif
-			
+		</div>
+
+		<div class="panel-body" style="word-wrap: break-word;">
 			@if ( $aspect->folded )
 			<div id="collapsable-{!! $aspect->id !!}" style="display:none;">
 			@else 
@@ -38,7 +41,7 @@
 			{!!  $aspect->display_aspect()  !!}
 
 			<div id="aspect_control_drawer_{!! $aspect->id !!}">
-				<div id="aspect_settings_toggle_{!! $aspect->id !!}" class="aspect_meta" style="background-color:#fff; width:25px; padding:5px;float:left;">
+				<div id="aspect_settings_toggle_{!! $aspect->id !!}" class="aspect_meta" style="width:25px; padding:5px;float:left;">
 					<i class="fa fa-cogs" aria-hidden="true"></i>
 				</div>
 
@@ -79,19 +82,23 @@
 			});
 
 			$("#roll-up-{!! $aspect->id !!}").click(function(){
-				$("#collapsable-{!! $aspect->id !!}").toggle("slow", function(){ 
+				$("#collapsable-{!! $aspect->id !!}").toggle("slow", function(){
 					$("#roll-up-{!! $aspect->id !!}").hide();
 					$("#roll-down-{!! $aspect->id !!}").show();
+					$.rejigger();
 				});
 				$.post( "/aspect/{!! $aspect->id !!}/fold", { _token: "{{ csrf_token() }}"} );
+
 			});
 
 			$("#roll-down-{!! $aspect->id !!}").click(function(){
 				$("#collapsable-{!! $aspect->id !!}").toggle("slow", function(){
 					$("#roll-down-{!! $aspect->id !!}").hide();
 					$("#roll-up-{!! $aspect->id !!}").show();
+					$.rejigger();
 				});
 				$.post( "/aspect/{!! $aspect->id !!}/fold", { _token: "{{ csrf_token() }}"} );
+
 			});
 		});
 	</script>
