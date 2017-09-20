@@ -69,6 +69,7 @@
 
 	<!-- my styles should override anything -->
 	<link href="{{ asset('css/coldreader.css') }}?@php echo(time()); @endphp" rel="stylesheet">
+	<link href="/theme/theme_css?@php echo(time()); @endphp" rel="stylesheet">
 
 
 </head>
