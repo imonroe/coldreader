@@ -22,11 +22,9 @@
 </div>
 
 <script type="text/javascript">
-	$(function(){
-
-		$(".reorder-handle").show();
-		
-		$(".sortable").sortable({
+$(function(){
+	$(".reorder-handle").show();
+	$(".sortable").sortable({
 		handle: '.reorder-handle',
 		placeholder: "ui-state-highlight",	
 		update: function (event, ui) {
@@ -35,12 +33,7 @@
 			$.post( "/subject/aspect_sorter", data );
 			$.rejigger();
 		}
-
-
 	});
-
-
-
-	});	
+});	
 </script>
 @endsection

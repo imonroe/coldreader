@@ -21,7 +21,9 @@ use Illuminate\Http\Request;
 	Route::options($uri, $callback);
 */
 
-
+/*
+  A little basic themeing support.
+*/
 Route::get('/theme/theme_css', function(){
 	$theme = array();
 	$contents = view('theme.theme_css')->with('theme', $theme);
