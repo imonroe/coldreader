@@ -180,13 +180,18 @@ return [
 		// CRPS
 		imonroe\crps\crpsServiceProvider::class,
 		imonroe\ana\anaServiceProvider::class,
+		
+		// Google aspects
+		imonroe\cr_aspects_google\cr_aspects_googleServiceProvider::class,
+		// Socialite service provider
+		Laravel\Socialite\SocialiteServiceProvider::class,
 
 		// HTML and Form Support
 		Collective\Html\HtmlServiceProvider::class,
-		
+
 		// Markdown service profider
 		GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-		
+
 		Subdesign\LaravelCliUser\CliUserServiceProvider::class,
     ],
 
@@ -244,6 +249,10 @@ return [
 		'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 		'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+		'GoogleContactsAPIResultsAspect' => imonroe\cr_aspects_google\GoogleContactsAPIResultsAspect::class,
+		'GoogleContactDataAspect' => imonroe\cr_aspects_google\GoogleContactDataAspect::class,
+		'GoogleTasksListAspect' =>  imonroe\cr_aspects_google\GoogleTasksListAspect::class,
+		'GoogleCalendarAspect' => imonroe\cr_aspects_google\GoogleCalendarAspect::class,
 
 	],
 

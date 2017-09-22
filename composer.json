@@ -4,6 +4,12 @@
     "keywords": ["coldreader", "laravel"],
     "license": "GPL3",
     "type": "project",
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:/imonroe/cr_aspects_google.git"
+      }
+    ],
     "require": {
         "php": ">=7.0",
         "doctrine/dbal": "^2.5",
@@ -11,11 +17,14 @@
         "graham-campbell/markdown": "^8.0",
         "imonroe/ana": "dev-master",
         "imonroe/crps": "dev-master",
+		"imonroe/cr_aspects_google": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
 		"swiftmailer/swiftmailer": "~6.0",
-        "subdesign/laravel-cli-user": "^1.0.0"
+        "subdesign/laravel-cli-user": "^1.0.0",
+		"fguillot/picofeed": "@stable",
+		"fabpot/goutte": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
