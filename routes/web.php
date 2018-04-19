@@ -13,8 +13,12 @@
 
 Auth::routes();
 
+Route::redirect('/', '/home', 301);
 
-Route::get('/', 'WelcomeController@show');
+Route::get('/logout', function(){
+	Auth::logout();
+	return view('auth.login');
+});
 
 Route::get('/bug-report', function(){
   return view('static_pages.bug_report');

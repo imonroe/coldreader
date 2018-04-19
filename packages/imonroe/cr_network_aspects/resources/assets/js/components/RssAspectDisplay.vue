@@ -22,7 +22,7 @@ hr{
     <div>
         <span v-if="loading"><center><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></center></span>
         <span v-else>
-            <div class="rss-item" v-for="item in data"> 
+            <div class="rss-item" v-for="item in this.actualCount()"> 
                 <a :href="item.link" target="_blank">{{ item.title }}</a><br/>
                 <div class="rss-byline lighten">
                     <span v-if="item.author != null ">By: {{ item.author }} | </span>
@@ -45,6 +45,7 @@ export default {
       data: [],
       feedUrl: '',
       itemCount: '',
+      liveCount: 0,
       loading: true
     };
   },
@@ -76,10 +77,16 @@ export default {
   },
   methods: {
     actualCount(){
+        var true_count = 0;
         if ( this.initialConfiguration.item_count > this.data.length){
-            return this.data.length;
+            true_count = this.data.length;
         } else {
-            return this.initialConfiguration.item_count;
+            true_count = this.initialConfiguration.item_count;
+        }
+        if (true_count > 0){
+            return this.data.slice(0, true_count)
+        } else {
+            return [];
         }
     }, 
     formatDate(date) {
