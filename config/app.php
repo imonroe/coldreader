@@ -150,6 +150,16 @@ return [
         /*
          * Package Service Providers...
          */
+         // CRPS
+         imonroe\crps\crpsServiceProvider::class,
+         imonroe\ana\anaServiceProvider::class,
+         imonroe\cr_network_aspects\cr_network_aspectsServiceProvider::class,
+         imonroe\cr_theme_system\cr_theme_systemServiceProvider::class,
+         imonroe\timezone_agent\timezone_agentServiceProvider::class,
+         
+         // HTML and Form Support
+         Collective\Html\HtmlServiceProvider::class,
+	     Watson\BootstrapForm\BootstrapFormServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +218,20 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Form'     => Collective\Html\FormFacade::class,
+      	'HTML'     => Collective\Html\HtmlFacade::class,
+      	'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+      	'Ana' 	=> imonroe\ana\Ana::class,
+      	'Aspect' => imonroe\crps\Aspect::class,
+      	'AspectType' => imonroe\crps\AspectType::class,
+      	'Subject' => imonroe\crps\Subject::class,
+	    'SubjectType' => imonroe\crps\SubjectType::class,
+
+        'APIResultAspect' => imonroe\cr_network_aspects\APIResultAspect::class,
+        'RSSFeedAspect' => imonroe\cr_network_aspects\RSSFeedAspect::class,
+        'WebpageAspect' => imonroe\cr_network_aspects\WebpageAspect::class,
+        'WebScraperAspect' => imonroe\cr_network_aspects\WebScraperAspect::class,
 
     ],
 
