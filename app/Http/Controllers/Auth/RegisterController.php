@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Log;
+use App\Seeders\NewAccountSeeder;
 
 class RegisterController extends Controller
 {
@@ -59,23 +60,18 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \App\User
      */
     protected function create(array $data)
     {
-		// Disabled for now
-		//return false;
-		$log_message = 'Someone tried to make a new account: '.var_export($data, true);
-		Log::info($log_message);
-		return response()->view('errors.403', ['message' => 'New account registration is disabled. Your information has been logged.']);
-
-		/*
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => Hash::make($data['password']),
         ]);
-		*/
 
+        $seeder = new NewAccountSeeder;
+        $seeder->populate($user->id);
+        return $user;
     }
 }

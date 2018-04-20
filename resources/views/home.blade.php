@@ -1,37 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<home :user="user" inline-template>
+    <div class="container">
+        <!-- Application Dashboard -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dashboard</div>
 
-@php
-	$user_data = session('user_data');
-@endphp
-
-
-
-<div class="panel-heading"> <p>Welcome back, {{ $user_data['name'] }}.  Let's get to work. </p></div>
-
-<div class="panel-body">
-
-	<div style="width:100%; clear:both;">
-	<center><h3> Daily Notes </h3></center>
-
-	<p>{!! $daily_notes->get_jump_menu() !!}</p>
-	<hr />	
-	</div>
-
-	<div id="grid" class="row d-flex">
-
-	@foreach ($homepage_aspects->sorted_aspects() as $a)
-	@include('aspect.aspect_field', array('aspect'=>$a))
-	@endforeach
-
-
-	@foreach ($daily_notes->sorted_aspects() as $aspect)
-	@include('aspect.aspect_field', array('aspect'=>$aspect))
-	@endforeach
-
-	</div>
-
-</div>
-
+                    <div class="panel-body">
+                        Your application's dashboard.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</home>
 @endsection

@@ -8,7 +8,7 @@
                 <div class="panel-heading">  TITLE </div>
                 <div class="panel-body">
 
-					<!-- place content here. --> 
+					<!-- place content here. -->
 
 
 

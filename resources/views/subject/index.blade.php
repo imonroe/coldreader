@@ -5,7 +5,10 @@
 <div class="panel-body">
 	<p><a href="/subject/create/" class="btn btn-default">Create a new Subject</a> </p>
 
-	{!!  $directory  !!}
+  
+
+	<subject-navigator :menu="{{ json_encode($codex_array) }}"></subject-navigator>
+
 
 </div>
 @endsection

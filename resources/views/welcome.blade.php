@@ -1,92 +1,87 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.title') }}</title>
+    <title>@yield('title', config('app.name'))</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Open Sans';
+        }
 
-            .full-height {
-                height: 100vh;
-            }
+        .full-height {
+            min-height: 100%;
+        }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
 
-            .position-ref {
-                position: relative;
-            }
+        .flex-fill {
+            flex: 1;
+        }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
 
-            .content {
-                text-align: center;
-            }
 
-            .title {
-                font-size: 84px;
-            }
+        .text-center {
+            text-align: center;
+        }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+        .links {
+            padding: 1em;
+            text-align: right;
+        }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="/auth/google/">Login</a>
-                        <!-- <a href="{{ url('/register') }}">Register</a> -->
-                    @endif
-                </div>
-            @endif
+        .links a {
+            text-decoration: none;
+        }
 
-            <div class="content">
-                <div class="title m-b-md">
-                    {{ config('app.title') }}
-                </div>
-				
-				<div>
-					<p>Private software, all access is logged.</p>
-				</div>
+        .links button {
+            background-color: #3097D1;
+            border: 0;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-family: 'Open Sans';
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px;
+            text-transform: uppercase;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="full-height flex-column">
+        <nav class="links">
+            <a href="/login" style="margin-right: 15px;">
+                <button>
+                    Login
+                </button>
+            </a>
+        </nav>
 
-            </div>
+        <div class="flex-fill flex-center">
+            <h1 class="text-center">
+                Coldreader<br />
+                <img src="/img/logo.gif">
+            </h1>
         </div>
-    </body>
+    </div>
+</body>
 </html>

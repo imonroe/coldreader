@@ -10,6 +10,7 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
+    |
     */
 
     'name' => env('APP_NAME', 'Laravel'),
@@ -109,23 +110,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Logging Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
-    |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
-    |
-    */
-
-    'log' => env('APP_LOG', 'single'),
-
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -166,7 +150,19 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
+         // CRPS
+         imonroe\crps\crpsServiceProvider::class,
+         imonroe\ana\anaServiceProvider::class,
+         imonroe\cr_network_aspects\cr_network_aspectsServiceProvider::class,
+         imonroe\cr_theme_system\cr_theme_systemServiceProvider::class,
+         imonroe\timezone_agent\timezone_agentServiceProvider::class,
+         
+         // HTML and Form Support
+         Collective\Html\HtmlServiceProvider::class,
+         Watson\BootstrapForm\BootstrapFormServiceProvider::class,
+         
+         // Command-line user support
+         Subdesign\LaravelCliUser\CliUserServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,22 +173,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-		// CRPS
-		imonroe\crps\crpsServiceProvider::class,
-		imonroe\ana\anaServiceProvider::class,
-		
-		// Google aspects
-		imonroe\cr_aspects_google\cr_aspects_googleServiceProvider::class,
-		// Socialite service provider
-		Laravel\Socialite\SocialiteServiceProvider::class,
-
-		// HTML and Form Support
-		Collective\Html\HtmlServiceProvider::class,
-
-		// Markdown service profider
-		GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-
-		Subdesign\LaravelCliUser\CliUserServiceProvider::class,
     ],
 
     /*
@@ -241,19 +221,21 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		'Aspect' => imonroe\crps\Aspect::class,
-		'AspectType' => imonroe\crps\AspectType::class,
-		'Subject' => imonroe\crps\Subject::class,
-		'SubjectType' => imonroe\crps\SubjectType::class,
-		'Ana' => imonroe\ana\Ana::class,
-		'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-		'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
-		'GoogleContactsAPIResultsAspect' => imonroe\cr_aspects_google\GoogleContactsAPIResultsAspect::class,
-		'GoogleContactDataAspect' => imonroe\cr_aspects_google\GoogleContactDataAspect::class,
-		'GoogleTasksListAspect' =>  imonroe\cr_aspects_google\GoogleTasksListAspect::class,
-		'GoogleCalendarAspect' => imonroe\cr_aspects_google\GoogleCalendarAspect::class,
 
-	],
+        'Form'     => Collective\Html\FormFacade::class,
+      	'HTML'     => Collective\Html\HtmlFacade::class,
+      	'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
+      	'Ana' 	=> imonroe\ana\Ana::class,
+      	'Aspect' => imonroe\crps\Aspect::class,
+      	'AspectType' => imonroe\crps\AspectType::class,
+      	'Subject' => imonroe\crps\Subject::class,
+	    'SubjectType' => imonroe\crps\SubjectType::class,
+
+        'APIResultAspect' => imonroe\cr_network_aspects\APIResultAspect::class,
+        'RSSFeedAspect' => imonroe\cr_network_aspects\RSSFeedAspect::class,
+        'WebpageAspect' => imonroe\cr_network_aspects\WebpageAspect::class,
+        'WebScraperAspect' => imonroe\cr_network_aspects\WebScraperAspect::class,
+
+    ],
 
 ];

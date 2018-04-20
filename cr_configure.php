@@ -1,8 +1,10 @@
 <?php
-
 /**
-	Post installation configuration script for coldreader
-*/
+ * Coldreader installation configuration script.
+ * TODO: Wrap this up in an artisan command instead of using it as a separate script.
+ * 
+ * Please excuse the wrapper functions; I'm forgetful.
+ */
 
 function execute($cmd){
 	echo 'Executing '.$cmd.PHP_EOL;
@@ -15,60 +17,76 @@ function ask_user($prompt){
 	return $input;
 }
 
-function replace_a_line($input_array = ['haystack', 'needle', 'newline']) {
-   if (stristr($input_array[0], $input_array[1])) {
-     return $input_array[2];
-   }
-   return $input_array[0];
+function say($msg){
+	echo($msg . PHP_EOL);
 }
 
-echo 'beginning coldreader post-installation script'.PHP_EOL;
+/**
+ * Here's where the fun begins.
+ * 
+ */
+echo 'Beginning Coldreader post-installation script'.PHP_EOL;
 $dbs = ask_user('What is your database server? [127.0.0.1]');
+$dbn = ask_user('What is the name of the database? [homestead]');
+$dbu = ask_user('What is the database username? [homestead]');
+$dbp = ask_user('What is the database password? [secret]');
+$url = ask_user('What is the app url? [http://localhost]');
+$do_npm = ask_user('Install npm dependencies? y/n [n]');
+$npm = (!empty($do_npm)) ? $do_npm : 'n';
 $database_server = (!empty($dbs)) ? $dbs : '127.0.0.1';
-$database_name = ask_user('What is the name of the database?');
-$database_user = ask_user('What is the database username?');
-$database_password = ask_user('What is the database password?');
-/*
-	This is the default configuration in the default .env
-	DB_CONNECTION=mysql
-	DB_HOST=127.0.0.1
-	DB_PORT=3306
-	DB_DATABASE=homestead
-	DB_USERNAME=homestead
-	DB_PASSWORD=secret
+$database_name = (!empty($dbn)) ? $dbn : 'homestead';
+$database_user = (!empty($dbu)) ? $dbu : 'homestead';
+$database_password = (!empty($dbp)) ? $dbp : 'secret';
+$app_url = (!empty($url)) ? $url : 'http://localhost';
 
-*/
-
-echo 'reading config file'.PHP_EOL;
+say('Reading config file');
+if ( !file_exists('.env') ){
+	execute('cp .env.example .env');
+}
 $environment = file('.env');
-echo 'here\'s what your environment looks like'.PHP_EOL;
-var_export($environment);
-echo 'making replacements'.PHP_EOL;
+
+say('Making replacements');
 foreach ($environment as $key => $value){
-	if (!(strrpos($value, 'DB_HOST=127.0.0.1')==FALSE)){
+	if (!(strrpos($value, 'DB_HOST=')===FALSE)){
 		$environment[$key] = 'DB_HOST='.$database_server . PHP_EOL;
 	}
-	if (!(strrpos($value, 'DB_DATABASE=')==FALSE)){
+	if (!(strrpos($value, 'DB_DATABASE=')===FALSE)){
 		$environment[$key] = 'DB_DATABASE='.$database_name . PHP_EOL;
 	}
-	if (!(strrpos($value, 'DB_USERNAME=')==FALSE)){
+	if (!(strrpos($value, 'DB_USERNAME=')===FALSE)){
 		$environment[$key] = 'DB_USERNAME='.$database_user . PHP_EOL;
 	}
-	if (!(strrpos($value, 'DB_PASSWORD=')==FALSE)){
+	if (!(strrpos($value, 'DB_PASSWORD=')===FALSE)){
 		$environment[$key] = 'DB_PASSWORD='.$database_password . PHP_EOL;
+	}
+	if (!(strrpos($value, 'APP_NAME=')===FALSE)){
+		$environment[$key] = 'APP_NAME=Coldreader' . PHP_EOL;
+	}
+	if (!(strrpos($value, 'APP_URL=')===FALSE)){
+		$environment[$key] = 'APP_URL='. $app_url . PHP_EOL;
 	}
 }
 $env = implode('', $environment);
-echo 'writing file'.PHP_EOL;
+say('Writing file');
 file_put_contents('.env', $env);
-echo 'file written'.PHP_EOL;
-execute('composer update');
+say('File written');
+
+execute('composer install');
+
+execute('php artisan key:generate');
+
 execute('php artisan vendor:publish');
 execute('php artisan migrate');
 execute('php artisan storage:link');
+
+if ($npm == 'y'){
+	execute('npm install');
+	execute('npm run production');
+}
+
 execute('php artisan cliuser:create');
 
-echo 'completed post-installation script.  enjoy the software!';
+say('Completed post-installation script.  Enjoy the software!');
 
 exit();
 ?>

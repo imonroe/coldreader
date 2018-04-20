@@ -1,5 +1,5 @@
 <?php
-use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,78 +11,42 @@ use Illuminate\Http\Request;
 |
 */
 
-/*
-	Reference for available RESTful routes:
-	Route::get($uri, $callback);
-	Route::post($uri, $callback);
-	Route::put($uri, $callback);
-	Route::patch($uri, $callback);
-	Route::delete($uri, $callback);
-	Route::options($uri, $callback);
-*/
+Auth::routes();
 
-/*
-  A little basic themeing support.
-*/
-Route::get('/theme/theme_css', function(){
-	$theme = array();
-	$contents = view('theme.theme_css')->with('theme', $theme);
-	return response($contents)->header('Content-Type', 'text/css');
+Route::redirect('/', '/home', 301);
+
+Route::get('/logout', function(){
+	Auth::logout();
+	return view('auth.login');
 });
 
-// Welcome screen and login button.
-Route::get('/', function () {
-    return redirect()->route('home');
+Route::get('/bug-report', function(){
+  return view('static_pages.bug_report');
 });
 
-// Here we have the routes necessary for authentication.
-// we are overriding:
-// Auth::routes();
-// with the following routes:
-// Authentication Routes...
+Route::get('/contact', function(){
+  return view('static_pages.contact');
+});
+Route::post('/contact', function(){
+  // process the contact form.
+  return view('static_pages.contact', ['message' => 'Your submission has been processed.']);
+});
 
-Route::get('login', [
-  'as' => 'login',
-  'uses' => 'Auth\LoginController@showLoginForm'
-  //'uses' => 'Auth\AuthController@redirectToProvider'
-]);
-Route::post('login', [
-  'as' => '',
-  'uses' => 'Auth\LoginController@login'
-  //'uses' => 'Auth\AuthController@redirectToProvider'
-]);
-Route::post('logout', [
-  'as' => 'logout',
-  'uses' => 'Auth\LoginController@logout'
-]);
+Route::get('/faq', function(){
+  return view('static_pages.faq');
+});
 
-// Password Reset Routes...
-Route::post('password/email', [
-  'as' => 'password.email',
-  'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
-]);
-Route::get('password/reset', [
-  'as' => 'password.request',
-  'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm'
-]);
-Route::post('password/reset', [
-  'as' => '',
-  'uses' => 'Auth\ResetPasswordController@reset'
-]);
-Route::get('password/reset/{token}', [
-  'as' => 'password.reset',
-  'uses' => 'Auth\ResetPasswordController@showResetForm'
-]);
+Route::get('/privacy', function(){
+  return view('static_pages.privacy');
+});
 
-// Registration Routes...
-Route::get('register', [
-  'as' => 'register',
-  'uses' => 'Auth\RegisterController@showRegistrationForm'
-]);
-Route::post('register', [
-  'as' => '',
-  'uses' => 'Auth\RegisterController@register'
-]);
+Route::get('/tos', function(){
+  return view('static_pages.tos');
+});
+
+Route::get('/help', function(){
+  return view('static_pages.help');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -104,13 +68,12 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 		return view('log', ['log_items' => '']);
 	});
 
-
-
 	// News Routes
 	Route::get('/news', 'RSSController@generate_news_page');
 	Route::post('/news/get_feed', 'RSSController@get_feed_via_ajax');
 
-	// Search Routes:
-	Route::post('/search/results', 'SearchController@show_search_results');
+	Route::view('/preferences', 'settings.profile.update-application-settings');
 
 });  // finished with authenticated routes.
+
+

@@ -8,8 +8,8 @@
                 <div class="panel-heading">Today's News</div>
                 <div class="panel-body">
 
-					<!-- place content here. --> 
-					
+					<!-- place content here. -->
+
 					@foreach ($news_aspects->sorted_aspects() as $a)
 						@include('aspect.aspect_field', array('aspect'=>$a))
 					@endforeach

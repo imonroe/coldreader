@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Socialite;
-use imonroe\crps\Subject;
 
 class HomeController extends Controller
 {
@@ -15,17 +13,18 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
+
+        // $this->middleware('subscribed');
     }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index(Request $request)
+    public function show()
     {
-        $homepage_aspects_config = Subject::where('name', '=', 'Front Page Aspects')->first();
-        $homepage_aspects = $homepage_aspects_config->aspects();
-        return view('home', ['homepage_aspects' => $homepage_aspects_config]);
+        return view('home');
     }
 }

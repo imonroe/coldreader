@@ -8,13 +8,13 @@
                 <div class="panel-heading">  {{{ $title }}} </div>
                 <div class="panel-body">
 
-					<!-- place content here. --> 
+					<!-- place content here. -->
 					<a href="/aspect_type/create/" class="btn btn-default">Create a new Aspect Type</a>
 					<ul>
 					@foreach ($types as $type)
 						<li> <a href="/aspect_type/{!! $type->id !!}/edit">{!! $type->aspect_name !!} </a></li>
 					@endforeach
-					</ul>	
+					</ul>
                 </div>
             </div>
         </div>
