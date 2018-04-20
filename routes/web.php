@@ -72,8 +72,7 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 	Route::get('/news', 'RSSController@generate_news_page');
 	Route::post('/news/get_feed', 'RSSController@get_feed_via_ajax');
 
-  // Profile routes
-  Route::put('/settings/profile/details', 'ProfileDetailsController@update');
+	Route::view('/preferences', 'settings.profile.update-application-settings');
 
 });  // finished with authenticated routes.
 

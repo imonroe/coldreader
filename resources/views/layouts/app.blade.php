@@ -43,7 +43,10 @@
     <div id="app">
         
         <!-- navbar -->
-        @include('navigation.navbar2')
+        @include('navigation.navbar')
+
+        <!-- notifications -->
+        @include('messages')
 
         <!-- main content -->
         <main class="py-4">

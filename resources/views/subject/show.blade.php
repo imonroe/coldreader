@@ -4,6 +4,9 @@
   $jump_menu_array = $subject->get_jump_menu_json();
   $subject_type = $subject->subject_type();
 
+  $all_aspects = $subject->sorted_aspects();
+  
+  //dd($all_aspects);
   //dd($jump_menu_array);
   //dd($codex);
   //dd($description);
@@ -52,10 +55,15 @@
     	<hr style="clear:both;" />
 
     	<div id="grid" class="row sortable">
-    		@foreach ($subject->sorted_aspects() as $aspect)
+        @if ($all_aspects->isEmpty())
+          <div style="text-align: center;"><h3>Nothing here yet.</h3></div>
+        @endif
+
+    		@foreach ($all_aspects as $aspect)
     			@include('aspect.aspect_field', array('aspect'=>$aspect))
     		@endforeach
-    	</div>
+      
+      </div>
 
   </div>
 </div>
