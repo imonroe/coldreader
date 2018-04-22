@@ -1,5 +1,5 @@
 {
-    "name": "imonroe/coldreader_production",
+    "name": "Coldreader",
     "description": "A personal information database, note-taking app, and more.",
     "license": "GPL-3.0-or-later",
     "type": "project",
@@ -15,14 +15,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/imonroe/ana.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/imonroe/laravel-packager.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/imonroe/skeleton.git"
         }
 	],
     "require": {
@@ -72,6 +64,9 @@
         }
     },
     "scripts": {
+        "post-create-project-cmd": [
+            "@php -r \"echo('Please run: '.PHP_EOL.'php cr_configure.php'.PHP_EOL.'to complete the installation.'.PHP_EOL);  \""
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
