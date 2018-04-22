@@ -2,6 +2,8 @@
 
 Coldreader is a personal information management system. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.6, Bootstrap 3, and Vue.js.
 
+This is the open-source version.  It is configured to support a single user, and includes some tools to make it easy to customize the system for your own uses.
+
 It may be helpful to think of it as something half-way between an mindmap and a private wiki.  I use it in place of Evernote, as a personal information management tool. Out of the box, it may seem a little trivial, but once you start building it out with your own custom Aspects, you'll find that there's really no other tool like it.
 
 It makes no assumptions about what kind of information you want to keep track.  In Coldreader, there are essentially two kinds of things: Subjects, and Aspects.

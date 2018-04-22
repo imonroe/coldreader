@@ -1,8 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "name": "imonroe/coldreader_production",
+    "description": "A personal information database, note-taking app, and more.",
+    "license": "GPL-3.0-or-later",
     "type": "project",
     "repositories": [
         {
