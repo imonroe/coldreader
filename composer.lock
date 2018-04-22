@@ -1116,18 +1116,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/crps.git",
-                "reference": "71183b62fe80be8bfe43b1d8ad0a129504051718"
+                "reference": "e75e017c2769b46546b1e4da884f2c00bf21b60d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/crps/zipball/71183b62fe80be8bfe43b1d8ad0a129504051718",
-                "reference": "71183b62fe80be8bfe43b1d8ad0a129504051718",
+                "url": "https://api.github.com/repos/imonroe/crps/zipball/e75e017c2769b46546b1e4da884f2c00bf21b60d",
+                "reference": "e75e017c2769b46546b1e4da884f2c00bf21b60d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.5",
                 "illuminate/support": "~5.1",
-                "imonroe/mime-utils": "^0.1",
+                "imonroe/mimeutils": "^0.1",
                 "laravel/framework": ">5.4",
                 "laravelcollective/html": ">5.4.0",
                 "league/commonmark": "^0.16",
@@ -1186,20 +1186,20 @@
                 "source": "https://github.com/imonroe/crps/tree/master",
                 "issues": "https://github.com/imonroe/crps/issues"
             },
-            "time": "2018-04-22T19:54:16+00:00"
+            "time": "2018-04-22T22:24:01+00:00"
         },
         {
-            "name": "imonroe/mime-utils",
-            "version": "0.1",
+            "name": "imonroe/mimeutils",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/imonroe/mime_utils.git",
-                "reference": "64d30f6f7b72a983e34e1a0157b3576c6708fea7"
+                "url": "https://github.com/imonroe/mimeutils.git",
+                "reference": "f995ba4e78cdba9a3fbce980dfb9d7b84831816d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/mime_utils/zipball/64d30f6f7b72a983e34e1a0157b3576c6708fea7",
-                "reference": "64d30f6f7b72a983e34e1a0157b3576c6708fea7",
+                "url": "https://api.github.com/repos/imonroe/mimeutils/zipball/f995ba4e78cdba9a3fbce980dfb9d7b84831816d",
+                "reference": "f995ba4e78cdba9a3fbce980dfb9d7b84831816d",
                 "shasum": ""
             },
             "require": {
@@ -1218,7 +1218,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "imonroe\\mime-utils\\": "src"
+                    "imonroe\\mimeutils\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1234,12 +1234,13 @@
                 }
             ],
             "description": "A helper for working with MIME types, particularly for validating uploads.",
-            "homepage": "https://github.com/imonroe/mime-utils",
+            "homepage": "https://github.com/imonroe/mimeutils",
             "keywords": [
                 "imonroe",
-                "mime-utils"
+                "mimetypes",
+                "mimeutils"
             ],
-            "time": "2018-04-22T19:32:08+00:00"
+            "time": "2018-04-22T21:42:35+00:00"
         },
         {
             "name": "intervention/image",
