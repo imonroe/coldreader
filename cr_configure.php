@@ -75,7 +75,9 @@ execute('composer install');
 
 execute('php artisan key:generate');
 
-execute('php artisan vendor:publish');
+// not needed, since we are committing the configs.
+//execute('php artisan vendor:publish');
+
 execute('php artisan migrate');
 execute('php artisan storage:link');
 
