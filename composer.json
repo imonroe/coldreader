@@ -39,7 +39,6 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "spatie/laravel-medialibrary": "^6.0.0",
         "watson/bootstrap-form": "^1.1",
-        "subdesign/laravel-cli-user": "^1.0.0",
         "fabpot/goutte": "^3.2"
     },
     "require-dev": {

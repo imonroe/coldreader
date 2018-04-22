@@ -15,6 +15,15 @@ Auth::routes();
 
 Route::redirect('/', '/home', 301);
 
+Route::get('/', function(){
+	$users = User::all();
+	if ($users->count() = 0){
+		return view('auth.register');
+	} else {
+		return redirect()->route('home');
+	}
+});
+
 Route::get('/logout', function(){
 	Auth::logout();
 	return view('auth.login');

@@ -86,7 +86,7 @@ if ($npm == 'y'){
 	execute('npm run production');
 }
 
-execute('php artisan cliuser:create');
+// execute('php artisan cliuser:create');
 
 say('Completed post-installation script.  Enjoy the software!');
 

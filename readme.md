@@ -1,15 +1,12 @@
 # Coldreader
 
-[![ico-version]][link-packagist]
-
-Coldreader is a personal information management software package. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.4, Bootstrap, and JQuery.
+Coldreader is a personal information management system. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.6, Bootstrap 3, and Vue.js.
 
 It may be helpful to think of it as something half-way between an mindmap and a private wiki.  I use it in place of Evernote, as a personal information management tool. Out of the box, it may seem a little trivial, but once you start building it out with your own custom Aspects, you'll find that there's really no other tool like it.
 
 It makes no assumptions about what kind of information you want to keep track.  In Coldreader, there are essentially two kinds of things: Subjects, and Aspects.
 
 A Subject can have an arbitrary number of Aspects.  Aspects are like a single piece of content.  That may be text, an image, an API result, and so forth.  By itself, a basic Aspect just stores its information as text in the database.  But you can extend simple aspects with a little bit of code so that they can behave however you like.  When you create a Custom Aspect Type, Coldreader will automatically add boilerplate code for your new overridden Aspect into the app/CustomAspects.php file.  By modifying the boilerplate with your own custom logic, you can retrieve API results, perform a calculation, whatever you like.  For more information, see Developing Custom Aspects below.
-
 
 Use cases:
 
@@ -24,18 +21,15 @@ Use cases:
 - Organize your life however you like
 
 
-
 ## Dependencies
-- Laravel 5.5
-- jQuery
+- 
+- PHP 7.2+
+- Composer 1.6.4
+- Node.JS (tested with version 8.9.4)
+- npm (tested with version 5.6.0)
 
 ## Install
 
-Via Composer
-
-``` bash
-$ composer create-project imonroe/coldreader
-```
 Via Git
 ``` bash
 $ git clone https://github.com/imonroe/coldreader.git
@@ -43,7 +37,9 @@ $ cd coldreader
 $ composer update
 $ cp .env.example .env
 ```
+
 Then edit your .env file to add your database credentials
+
 ``` bash
 $ php artisan migrate
 $ php artisan cliuser:create
