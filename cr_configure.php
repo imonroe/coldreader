@@ -82,6 +82,8 @@ if ($npm == 'y'){
 	execute('npm run production');
 }
 
+execute('rm firstrun.php');
+say('Deleted firstrun.php');
 say('Completed post-installation script.  Enjoy the software!');
 
 exit();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b72ebd1b5f783801f80812133feaa0cf",
+    "content-hash": "b1e7cfda3a2e2b6dd485a480e1b1cc22",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1041,7 +1041,7 @@
         },
         {
             "name": "imonroe/ana",
-            "version": "dev-master",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/ana.git",
@@ -1071,22 +1071,7 @@
                     "imonroe\\ana\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "imonroe\\ana\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "check-style": [
-                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-                ],
-                "fix-style": [
-                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1104,24 +1089,20 @@
                 "ana",
                 "imonroe"
             ],
-            "support": {
-                "source": "https://github.com/imonroe/ana/tree/master",
-                "issues": "https://github.com/imonroe/ana/issues"
-            },
             "time": "2018-03-16T18:37:57+00:00"
         },
         {
             "name": "imonroe/crps",
-            "version": "dev-master",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/crps.git",
-                "reference": "e75e017c2769b46546b1e4da884f2c00bf21b60d"
+                "reference": "90aefc09a669eb50f3fd7b3153c8836f7fb9a252"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/crps/zipball/e75e017c2769b46546b1e4da884f2c00bf21b60d",
-                "reference": "e75e017c2769b46546b1e4da884f2c00bf21b60d",
+                "url": "https://api.github.com/repos/imonroe/crps/zipball/90aefc09a669eb50f3fd7b3153c8836f7fb9a252",
+                "reference": "90aefc09a669eb50f3fd7b3153c8836f7fb9a252",
                 "shasum": ""
             },
             "require": {
@@ -1149,22 +1130,7 @@
                     "imonroe\\crps\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "imonroe\\crps\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "check-style": [
-                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-                ],
-                "fix-style": [
-                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -1182,11 +1148,7 @@
                 "crps",
                 "imonroe"
             ],
-            "support": {
-                "source": "https://github.com/imonroe/crps/tree/master",
-                "issues": "https://github.com/imonroe/crps/issues"
-            },
-            "time": "2018-04-22T22:24:01+00:00"
+            "time": "2018-04-22T23:35:36+00:00"
         },
         {
             "name": "imonroe/mimeutils",
@@ -5713,10 +5675,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "imonroe/ana": 20,
-        "imonroe/crps": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
