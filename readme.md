@@ -32,23 +32,6 @@ If you're planning to develop with Coldreader, you'll need Node and NPM for Webp
 
 ## Install
 
-Set up a directory to hold the installation.
-Set up a url in nginx to correspond to the url you want to use.
-Set up an empty database in mysql.  Remember the username and password.
-Change directory to your installation directory.
-composer create-project imonroe/coldreader
-composer create-project imonroe/coldreader . 2.1.0.x-dev
-wait for it to complete.
-then run: 
-run: php cr_configure.php
-- or - 
-run: git clone https://github.com/imonroe/coldreader.git .
-[switch to the branch you want to use, and git pull if needed.]
-run: php cr_configure.php
-follow the prompts.  The script will configure your initial settings automatically.
-It will ask you if you want to install npm dependencies.  In general, the answer should be yes, but you may want to skip that in some cases.
-Composer will pull down all the dependencies.  This may take some time.
-
 Coldreader is based on [Laravel 5.6](https://laravel.com/), and requires a server that is capable of serving a Laravel project.
 
 For specific information about server requirements, [see the Laravel docs.](https://laravel.com/docs/5.6#server-requirements)
@@ -59,7 +42,7 @@ Once you have an environment set up, you'll want to create a directory to hold t
 
 The simple way to install everything is to use Composer.  If you plan on developing with Coldreader, you are encouraged to use the Git method.
 
-###Via Composer:
+### Via Composer:
 ``` bash
 $ cd /wherever/you/want/to/install/
 $ composer create-project imonroe/coldreader .
@@ -70,7 +53,7 @@ $ php cr_configure.php
 ```
 Follow the prompts.  
 
-###Via Git
+### Via Git
 ``` bash
 $ cd /wherever/you/want/to/install/
 $ git clone https://github.com/imonroe/coldreader.git .
