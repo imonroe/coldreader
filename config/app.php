@@ -160,9 +160,6 @@ return [
          // HTML and Form Support
          Collective\Html\HtmlServiceProvider::class,
          Watson\BootstrapForm\BootstrapFormServiceProvider::class,
-         
-         // Command-line user support
-         Subdesign\LaravelCliUser\CliUserServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -1,26 +1,31 @@
 {
-  "_from": "tinymce@^4.6.7",
+  "_args": [
+    [
+      "tinymce@4.7.11",
+      "/home/vagrant/coldreader_personal"
+    ]
+  ],
+  "_from": "tinymce@4.7.11",
   "_id": "tinymce@4.7.11",
   "_inBundle": false,
   "_integrity": "sha512-rLWAibMZa1oFaxucufQxVacbXzt5LJe0lSgsRYlLIi0YOhl6JKFIuYqxlU74UygaAliDlNUX84hlMj7Ky0QmXQ==",
   "_location": "/tinymce",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "tinymce@^4.6.7",
+    "raw": "tinymce@4.7.11",
     "name": "tinymce",
     "escapedName": "tinymce",
-    "rawSpec": "^4.6.7",
+    "rawSpec": "4.7.11",
     "saveSpec": null,
-    "fetchSpec": "^4.6.7"
+    "fetchSpec": "4.7.11"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.11.tgz",
-  "_shasum": "c0599637cc0bc1d8a9df4812d1288d02d3c8def7",
-  "_spec": "tinymce@^4.6.7",
+  "_spec": "4.7.11",
   "_where": "/home/vagrant/coldreader_personal",
   "author": {
     "name": "Ephox Corporation"
@@ -28,8 +33,6 @@
   "bugs": {
     "url": "https://github.com/tinymce/tinymce/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Web based JavaScript HTML WYSIWYG editor control.",
   "homepage": "https://github.com/tinymce/tinymce-dist#readme",
   "keywords": [

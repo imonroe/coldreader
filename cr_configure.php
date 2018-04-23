@@ -72,10 +72,8 @@ file_put_contents('.env', $env);
 say('File written');
 
 execute('composer install');
-
 execute('php artisan key:generate');
 
-execute('php artisan vendor:publish');
 execute('php artisan migrate');
 execute('php artisan storage:link');
 
@@ -84,8 +82,8 @@ if ($npm == 'y'){
 	execute('npm run production');
 }
 
-execute('php artisan cliuser:create');
-
+execute('rm firstrun.php');
+say('Deleted firstrun.php');
 say('Completed post-installation script.  Enjoy the software!');
 
 exit();
