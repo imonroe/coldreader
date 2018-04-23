@@ -15,15 +15,6 @@ use Validator;
 
 // ---------  Begin Custom Aspects -------------- //
 
-/*
-Hey, you're going to see a line at the end of this file that looks like:
-
-// ------------------------------------------- //
-
-DO NOT REMOVE OR MODIFY THAT LINE.  IT IS THE FIND AND REPLACE TOKEN THAT ADDS NEW CUSTOM ASPECT CODE.
-IF YOU REMOVE OR CHANGE IT, YOU WILL BREAK THE APP.
-*/
-
 /*  -- Basic Aspect Types -- */
 
 class DefaultAspect extends Aspect{
