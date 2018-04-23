@@ -23,130 +23,68 @@ Use cases:
 - Organize your life however you like
 
 
-## Dependencies
-- 
+## Dependencies 
 - PHP 7.2+
-- Composer 1.6.4
+- Composer (tested with version 1.6.4)
+If you're planning to develop with Coldreader, you'll need Node and NPM for Webpack/Vue.JS support.
 - Node.JS (tested with version 8.9.4)
 - npm (tested with version 5.6.0)
 
 ## Install
 
-Via Git
+Set up a directory to hold the installation.
+Set up a url in nginx to correspond to the url you want to use.
+Set up an empty database in mysql.  Remember the username and password.
+Change directory to your installation directory.
+composer create-project imonroe/coldreader
+composer create-project imonroe/coldreader . 2.1.0.x-dev
+wait for it to complete.
+then run: 
+run: php cr_configure.php
+- or - 
+run: git clone https://github.com/imonroe/coldreader.git .
+[switch to the branch you want to use, and git pull if needed.]
+run: php cr_configure.php
+follow the prompts.  The script will configure your initial settings automatically.
+It will ask you if you want to install npm dependencies.  In general, the answer should be yes, but you may want to skip that in some cases.
+Composer will pull down all the dependencies.  This may take some time.
+
+Coldreader is based on [Laravel 5.6](https://laravel.com/), and requires a server that is capable of serving a Laravel project.
+
+For specific information about server requirements, [see the Laravel docs.](https://laravel.com/docs/5.6#server-requirements)
+
+The Homestead vagrant box works just fine with Coldreader, and you can try it out in your local environment with no risk. For more information about using Laravel Homestead, [check out their fantasic documentation.](https://laravel.com/docs/5.6/homestead)
+
+Once you have an environment set up, you'll want to create a directory to hold the project, and an empty database. Make sure you note the credentials you set up for the database to make installation easy.
+
+The simple way to install everything is to use Composer.  If you plan on developing with Coldreader, you are encouraged to use the Git method.
+
+###Via Composer:
 ``` bash
-$ git clone https://github.com/imonroe/coldreader.git
-$ cd coldreader
-$ composer update
-$ cp .env.example .env
+$ cd /wherever/you/want/to/install/
+$ composer create-project imonroe/coldreader .
 ```
-
-Then edit your .env file to add your database credentials
-
+Wait for the installation to complete. Then run: 
 ``` bash
-$ php artisan migrate
-$ php artisan cliuser:create
-$ php artisan storage:link
-$ php artisan vendor:publish
+$ php cr_configure.php
 ```
-Fire up your web browser and hit the site.  You can log in with the account you just created.
+Follow the prompts.  
 
-## Developing Custom Aspect Types
-
-### Anatomy of an Aspect
-
-#### Properties:
-
-- public int id
-The ID of this aspect
-
-- public int aspect_type
-The aspect_type id.  This determines the aspect_type we load this as.
-
-- public longtext aspect_data
-This is where the aspect's data is actually stored.  Note it's a longtext field.  Any data that an aspect stores, should be in text. Default is UTF-8
-
-- public mediumtext aspect_notes
-aspect_notes holds an array of configuration options for this array.  This is stored in JSON format in the database. The schema for this data is specified in the notes_schema() function below.
-
-- public text aspect_source
-An arbitrary text field.  This exists so you can record where and when you collected this information.
-
-- public int hidden
-0 = hidden, 1 = visible.
-
-- public datetime last_parsed
-The last time the parse() function was triggered.  See parse() below.
-
-- public timestamp created_at
-- public timestamp updated_at
-The standard Laravel timestamps
-
-- public int display_weight
-Display weight determines the order aspects are displayed. Higher values push aspects down, lower values let them float up.  Default is 100.
-
-- public text title
-A text field that holds an optional title for this aspect.
-
-- public int folded
-0 = not folded, 1 = folded.
-
-##### Useful Methods:
-    
-- public function notes_schema()
-
-- public function isSubclass()
-
-- public function update_aspect()
-
-- public function aspect_type()
-
-- public function notes_fields()
-
-- public function create_form($subject_id, $aspect_type_id=null)
-
-- public function edit_form($id)
-
-- public function subjects()
-
-- public function display_aspect()
-
-- public function parse()
-
-- public function pre_save(Request $request)
-
-- public function post_save(Request $request)
-
-- public function pre_update(Request $request)
-
-- public function post_update(Request $request)
-
-- public function pre_delete(Request $request)
-
-
-Upon creating a custom Aspect Type, boilerplate code will be added to the file app/CustomAspects.php
-
-If you created an Aspect Type called "Demo", for instance, the following code will be added: 
-
-``` php
-class DemoAspect extends Aspect{
-	public function notes_schema(){
-		return parent::notes_schema();
-	}
-	public function create_form($subject_id, $aspect_type_id=null){
-		return parent::create_form($subject_id, $this->aspect_type);
-	}
-	public function edit_form($id){
-		return parent::edit_form($id);
-	}
-	public function display_aspect(){
-		$output = parent::display_aspect();
-		return $output;
-	}
-	public function parse(){}
-}  // End of the DemoAspectclass.
+###Via Git
+``` bash
+$ cd /wherever/you/want/to/install/
+$ git clone https://github.com/imonroe/coldreader.git .
 ```
+Wait for the installation to complete. Then run: 
+``` bash
+$ php cr_configure.php
+```
+Follow the prompts.
 
+The configuration script will ask if you'd like to install the npm dependencies. If you are planning on developing with Coldreader, you may want to do that now.  It can take some time, however, and can safely be skipped if you're just trying out the software.
 
+## Developing with Coldreader
+For instructions and examples for how to get started developing with Coldreader, [please see the wiki.](https://github.com/imonroe/coldreader/wiki)
 
 ## Change log
 
@@ -174,10 +112,6 @@ If you discover any security related issues, please email ian@ianmonroe.com inst
 ## License
 
 GPL V3. Please see [License File](LICENSE.md) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/imonroe/crps.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/imonroe/crps.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/imonroe/coldreader
 [link-author]: https://github.com/imonroe
