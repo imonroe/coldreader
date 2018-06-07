@@ -40,15 +40,15 @@ class UsersAspectsJobs extends Command
      */
     public function handle()
     {
-      $this->info("Enqueueing UsersAspectsJobs...\n");
-      $this->output->progressStart(User::all()->count());
-      $users = User::chunk(100, function ($users) {
-        foreach($users as $user):
-          UsersAspectsJob::dispatch($user);
-          $this->output->progressAdvance();
-        endforeach;
-      });
-      $this->output->progressFinish();
-      $this->info("Done.");
+        $this->info("Enqueueing UsersAspectsJobs...\n");
+        $this->output->progressStart(User::all()->count());
+        $users = User::chunk(100, function ($users) {
+            foreach ($users as $user) :
+                UsersAspectsJob::dispatch($user);
+                $this->output->progressAdvance();
+            endforeach;
+        });
+        $this->output->progressFinish();
+        $this->info("Done.");
     }
 }

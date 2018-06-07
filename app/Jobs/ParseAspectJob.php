@@ -34,7 +34,7 @@ class ParseAspectJob implements ShouldQueue
      */
     public function handle()
     {
-      $this->aspect->parse();
-      Log::info("Parsed Aspect: " . $this->aspect->id);
+        $this->aspect->parse();
+        Log::info("Parsed Aspect: " . $this->aspect->id);
     }
 }

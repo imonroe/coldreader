@@ -60,21 +60,21 @@ class ColdreaderBoilerplate extends Command
 
         // set up the new directory.
 
-        if ( !(file_exists($packages_path)) ){
+        if (!(file_exists($packages_path))) {
             $this->info('Creating packages directory...');
             Ana::create_directory($packages_path, $perms = 0777);
         }
         $bar->advance();
         echo(PHP_EOL);
 
-        if ( !file_exists($packages_path . '/' . $vendor )){
+        if (!file_exists($packages_path . '/' . $vendor)) {
             $this->info('Creating vendor...');
             Ana::create_directory($packages_path . '/' . $vendor, $perms = 0777);
         }
         $bar->advance();
         echo(PHP_EOL);
 
-        if ( file_exists($packages_path . '/' . $vendor . '/' . $package_name) ){
+        if (file_exists($packages_path . '/' . $vendor . '/' . $package_name)) {
             Ana::error_out('Sorry, can\'t help you. That package directory already exists.');
         } else {
             $installation_dir = $packages_path . '/' . $vendor;
@@ -100,9 +100,9 @@ class ColdreaderBoilerplate extends Command
             ':author_username' => $author_github,
             'namespace imonroe\skeleton;' => 'namespace '.$vendor.'\\'.$package_name.';',
             'namespace imonroe\skeleton\Http\Controllers;' => 'namespace '.$vendor.'\\'.$package_name.'\Http\Controllers;',
-            'SkeletonAspect' => Ana::code_safe_name( $package_name).'Aspect',
-            'SkeletonController' => Ana::code_safe_name( $package_name).'Controller',
-            'SkeletonTest' => Ana::code_safe_name( $package_name).'Test',
+            'SkeletonAspect' => Ana::code_safe_name($package_name).'Aspect',
+            'SkeletonController' => Ana::code_safe_name($package_name).'Controller',
+            'SkeletonTest' => Ana::code_safe_name($package_name).'Test',
             'SkeletonServiceProvider' => $package_name.'ServiceProvider',
             "(__DIR__.'/../reources/views', 'skeleton');" => "(__DIR__.'/../reources/views', '".$package_name."');",
             "resource_path('views/imonroe/skeleton')," => "resource_path('views/".$vendor."/".$package_name."'),",
@@ -121,8 +121,8 @@ class ColdreaderBoilerplate extends Command
             'src/Http/Controllers/SkeletonController.php',
         ];
 
-        foreach ($files_to_check as $file){
-            foreach ($replacements as $find => $replace){
+        foreach ($files_to_check as $file) {
+            foreach ($replacements as $find => $replace) {
                 Ana::replace_and_save($installation_dir.'/'.$package_name.'/'.$file, $find, $replace);
             }
             $bar->advance();
@@ -132,15 +132,15 @@ class ColdreaderBoilerplate extends Command
         $this->info('Finished the replacements.'.PHP_EOL);
 
         $files_to_rename = [
-            'tests/SkeletonTest.php' => 'tests/' . Ana::code_safe_name( $package_name) .'Test.php',
-            'src/SkeletonAspect.php' => 'src/' . Ana::code_safe_name( $package_name) .'Aspect.php',
+            'tests/SkeletonTest.php' => 'tests/' . Ana::code_safe_name($package_name) .'Test.php',
+            'src/SkeletonAspect.php' => 'src/' . Ana::code_safe_name($package_name) .'Aspect.php',
             'src/SkeletonServiceProvider.php' => 'src/' . $package_name .'ServiceProvider.php',
-            'src/Http/Controllers/SkeletonController.php' => 'src/Http/Controllers/' . Ana::code_safe_name( $package_name) .'Controller.php',
+            'src/Http/Controllers/SkeletonController.php' => 'src/Http/Controllers/' . Ana::code_safe_name($package_name) .'Controller.php',
         ];
 
         $this->info('Renaming skeleton files.'.PHP_EOL);
-        foreach ($files_to_rename as $old => $new){
-            Ana::execute('mv '.$installation_dir.'/'.$package_name.'/'.$old.' '.$installation_dir.'/'.$package_name.'/'.$new );
+        foreach ($files_to_rename as $old => $new) {
+            Ana::execute('mv '.$installation_dir.'/'.$package_name.'/'.$old.' '.$installation_dir.'/'.$package_name.'/'.$new);
             $bar->advance();
             echo(PHP_EOL);
         }

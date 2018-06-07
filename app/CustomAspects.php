@@ -1,5 +1,6 @@
 <?php
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
@@ -17,244 +18,277 @@ use Validator;
 
 /*  -- Basic Aspect Types -- */
 
-class DefaultAspect extends Aspect{
-	public function __construct(){
-		parent::__construct();
-		// e.g., $this->keep_history = false;
-	}
-	public function notes_schema(){
-		$schema = json_decode(parent::notes_schema(), true);
-		// e.g., $schema['webpage_url'] = '';
-		return json_encode($schema);
-	}
+class DefaultAspect extends Aspect
+{
+    public function __construct()
+    {
+        parent::__construct();
+        // e.g., $this->keep_history = false;
+    }
+    public function notes_schema()
+    {
+        $schema = json_decode(parent::notes_schema(), true);
+        // e.g., $schema['webpage_url'] = '';
+        return json_encode($schema);
+    }
 
-	public function create_form($subject_id, $aspect_type_id=null){
-		return parent::create_form($subject_id, $aspect_type_id);
-	}
+    public function create_form($subject_id, $aspect_type_id = null)
+    {
+        return parent::create_form($subject_id, $aspect_type_id);
+    }
 
-	public function edit_form($id){
-		return parent::edit_form($id);
-	}
+    public function edit_form($id)
+    {
+        return parent::edit_form($id);
+    }
 
-	public function display_aspect(){
-		$output = parent::display_aspect();
-		return $output;
-	}
-	public function parse(){
-		$output = parent::parse();
-		return $output;
-	}
+    public function display_aspect()
+    {
+        $output = parent::display_aspect();
+        return $output;
+    }
+    public function parse()
+    {
+        $output = parent::parse();
+        return $output;
+    }
 }
 
-class FileUploadAspect extends Aspect{
-	public function create_form($subject_id, $aspect_type_id=null){
-    $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => true]);
-    $form .= \BootForm::hidden('subject_id', $subject_id);
-    $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
-    $form .= \BootForm::hidden('media_collection', 'uploads');
-    $form .= \BootForm::hidden('mime_type', 'all');
-    $form .= \BootForm::text('title', 'Title');
-    $form .= \BootForm::textarea('aspect_data', 'Description');
+class FileUploadAspect extends Aspect
+{
+    public function create_form($subject_id, $aspect_type_id = null)
+    {
+        $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('subject_id', $subject_id);
+        $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
+        $form .= \BootForm::hidden('media_collection', 'uploads');
+        $form .= \BootForm::hidden('mime_type', 'all');
+        $form .= \BootForm::text('title', 'Title');
+        $form .= \BootForm::textarea('aspect_data', 'Description');
     //$form .= \BootForm::text('aspect_source', 'File');
-    $form .= \BootForm::file('file_upload');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
-    return $form;
-	}
-	public function edit_form($id){
-    $media_items = $this->media;
-    $output = '<h3>Currently attached files:</h3>';
-    $output .= '<ul>'.PHP_EOL;
-    foreach ($media_items as $file){
-      $output .= '<li><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</li>';
+        $form .= \BootForm::file('file_upload');
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
     }
-    $output .= '</ul>'.PHP_EOL;
+    public function edit_form($id)
+    {
+        $media_items = $this->media;
+        $output = '<h3>Currently attached files:</h3>';
+        $output .= '<ul>'.PHP_EOL;
+        foreach ($media_items as $file) {
+            $output .= '<li><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</li>';
+        }
+        $output .= '</ul>'.PHP_EOL;
 
-    $form = \BootForm::horizontal(['url' => '/aspect/'.$this->id.'/edit', 'method' => 'post', 'files' => true]);
-    $form .= \BootForm::hidden('aspect_id', $this->id);
-    $form .= \BootForm::hidden('aspect_type', $this->aspect_type()->id);
-    $form .= \BootForm::hidden('media_collection', 'uploads');
-    $form .= \BootForm::hidden('mime_type', 'all');
-    $form .= \BootForm::text('title', 'Title', $this->title);
-    $form .= \BootForm::textarea('aspect_data', 'Description', $this->aspect_data);
+        $form = \BootForm::horizontal(['url' => '/aspect/'.$this->id.'/edit', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('aspect_id', $this->id);
+        $form .= \BootForm::hidden('aspect_type', $this->aspect_type()->id);
+        $form .= \BootForm::hidden('media_collection', 'uploads');
+        $form .= \BootForm::hidden('mime_type', 'all');
+        $form .= \BootForm::text('title', 'Title', $this->title);
+        $form .= \BootForm::textarea('aspect_data', 'Description', $this->aspect_data);
     //$form .= \BootForm::text('aspect_source', 'Source', $this->aspect_source);
     //$form .= \BootForm::checkbox('hidden', 'Hidden?', $aspect->hidden);
     //$form .= \BootForm::file('file_upload', 'Add Another File');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
 
-    $out = $output . $form;
-    return $out;
-	}
-	public function display_aspect(){
-    // There will be uploaded file(s) associated with this aspect, so let's grab them.
-    $media_items = $this->media;
-		$output = '<div class="aspect_type-'.$this->aspect_type()->id.'">';
-		$output .= '<p>'.$this->aspect_data.'</p>'.PHP_EOL;
-    $output .= '<ul>'.PHP_EOL;
-    foreach ($media_items as $file){
-      $output .= '<li><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</li>';
+        $out = $output . $form;
+        return $out;
     }
-    $output .= '</ul>'.PHP_EOL;
-		$output .= '</div>';
-		return $output;
-	}
-	public function parse(){}
+    public function display_aspect()
+    {
+    // There will be uploaded file(s) associated with this aspect, so let's grab them.
+        $media_items = $this->media;
+        $output = '<div class="aspect_type-'.$this->aspect_type()->id.'">';
+        $output .= '<p>'.$this->aspect_data.'</p>'.PHP_EOL;
+        $output .= '<ul>'.PHP_EOL;
+        foreach ($media_items as $file) {
+            $output .= '<li><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</li>';
+        }
+        $output .= '</ul>'.PHP_EOL;
+        $output .= '</div>';
+        return $output;
+    }
+    public function parse()
+    {
+    }
 }
 
-class ImageAspect extends FileUploadAspect{
+class ImageAspect extends FileUploadAspect
+{
 
-	public function notes_schema(){
-		$settings = json_decode(parent::notes_schema(), true);
-		$settings['width'] = '';
-		$settings['height'] = '';
-		return json_encode($settings);
-	}
-
-	public function create_form($subject_id, $aspect_type_id=null){
-		return parent::create_form($subject_id, $this->aspect_type);
-	}
-	public function edit_form($id){
-		return parent::edit_form($id);
-	}
-
-	public function css_size(){
-		$css_string = 'width:'.$this->width.';';
-		if (!is_null($this->height)){
-			$css_string .= 'height:'.$this->height.';';
-		}
-		return $css_string;
-	}
-
-	public function css_class(){
-		return (!is_null($this->css_class)) ? 'class="'.$this->css_class.'" ' : '';
-	}
-
-	public function display_aspect(){
-    // There will be uploaded file(s) associated with this aspect, so let's grab them.
-    $media_items = $this->media;
-		$css_size = '';
-		$settings = (array) json_decode($this->aspect_notes);
-		if ( !empty($settings['width']) ){
-			$css_size = 'style="width:'.$settings['width'].';';
-			if ( !empty($settings['height']) ){
-				$css_size .= ' height:'.$settings['height'].';';
-			}
-			$css_size .= '"';
-		}
-    $output = '';
-    foreach ($media_items as $file){
-      $output .= '<div class="image_aspect_display">'.PHP_EOL;
-      $output .= '<img src="'.$file->getUrl().'" '.$css_size.' />';
-      $output .= '<div class="image_caption">'.$this->aspect_data.'</div>';
-      $output .= '</div>'.PHP_EOL;
-      $output .= '<p><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</p>';
-
+    public function notes_schema()
+    {
+        $settings = json_decode(parent::notes_schema(), true);
+        $settings['width'] = '';
+        $settings['height'] = '';
+        return json_encode($settings);
     }
-		return $output;
-	}
-	public function parse(){
-		parent::parse();
-	}
+
+    public function create_form($subject_id, $aspect_type_id = null)
+    {
+        return parent::create_form($subject_id, $this->aspect_type);
+    }
+    public function edit_form($id)
+    {
+        return parent::edit_form($id);
+    }
+
+    public function css_size()
+    {
+        $css_string = 'width:'.$this->width.';';
+        if (!is_null($this->height)) {
+            $css_string .= 'height:'.$this->height.';';
+        }
+        return $css_string;
+    }
+
+    public function css_class()
+    {
+        return (!is_null($this->css_class)) ? 'class="'.$this->css_class.'" ' : '';
+    }
+
+    public function display_aspect()
+    {
+    // There will be uploaded file(s) associated with this aspect, so let's grab them.
+        $media_items = $this->media;
+        $css_size = '';
+        $settings = (array) json_decode($this->aspect_notes);
+        if (!empty($settings['width'])) {
+            $css_size = 'style="width:'.$settings['width'].';';
+            if (!empty($settings['height'])) {
+                $css_size .= ' height:'.$settings['height'].';';
+            }
+            $css_size .= '"';
+        }
+        $output = '';
+        foreach ($media_items as $file) {
+            $output .= '<div class="image_aspect_display">'.PHP_EOL;
+            $output .= '<img src="'.$file->getUrl().'" '.$css_size.' />';
+            $output .= '<div class="image_caption">'.$this->aspect_data.'</div>';
+            $output .= '</div>'.PHP_EOL;
+            $output .= '<p><a href="'.$file->getUrl().'">'.$file->name.' </a> ('.$file->mime_type.', '.$file->human_readable_size.')</p>';
+
+        }
+        return $output;
+    }
+    public function parse()
+    {
+        parent::parse();
+    }
 }
 
-class UnformattedTextAspect extends Aspect{
-	public function create_form($subject_id, $aspect_type_id=null){
-    $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => false]);
-    $form .= \BootForm::hidden('subject_id', $subject_id);
-    $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
-    $form .= \BootForm::text('title', 'Title');
-    $form .= \BootForm::textarea('aspect_data', 'Unformatted Text');
-    $form .= \BootForm::text('aspect_source', 'Source');
+class UnformattedTextAspect extends Aspect
+{
+    public function create_form($subject_id, $aspect_type_id = null)
+    {
+        $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => false]);
+        $form .= \BootForm::hidden('subject_id', $subject_id);
+        $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
+        $form .= \BootForm::text('title', 'Title');
+        $form .= \BootForm::textarea('aspect_data', 'Unformatted Text');
+        $form .= \BootForm::text('aspect_source', 'Source');
     //$form .= \BootForm::file('file_upload');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
-    return $form;
-	}
-	public function edit_form($id){
-    $aspect = Aspect::find($id);
-    $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
-    $form .= \BootForm::hidden('aspect_id', $aspect->id);
-    $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
-    $form .= \BootForm::text('title', 'Title', $aspect->title);
-    $form .= \BootForm::textarea('aspect_data', 'Unformatted Text', $aspect->aspect_data);
-    $form .= \BootForm::text('aspect_source', 'Source', $aspect->aspect_source);
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
+    }
+    public function edit_form($id)
+    {
+        $aspect = Aspect::find($id);
+        $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('aspect_id', $aspect->id);
+        $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
+        $form .= \BootForm::text('title', 'Title', $aspect->title);
+        $form .= \BootForm::textarea('aspect_data', 'Unformatted Text', $aspect->aspect_data);
+        $form .= \BootForm::text('aspect_source', 'Source', $aspect->aspect_source);
     //$form .= \BootForm::checkbox('hidden', 'Hidden?', $aspect->hidden);
     //$form .= \BootForm::file('file_upload');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
-    return $form;
-	}
-	public function display_aspect(){
-		$output = parent::display_aspect();
-		return $output;
-	}
-	public function parse(){
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
+    }
+    public function display_aspect()
+    {
+        $output = parent::display_aspect();
+        return $output;
+    }
+    public function parse()
+    {
                 parent::parse();
-        }
-
+    }
 }
 
-class LamdaFunctionAspect extends Aspect{
-	function __construct(){
-		parent::__construct();
-		$this->keep_history = false;
-	}
+class LamdaFunctionAspect extends Aspect
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->keep_history = false;
+    }
 
-	public function notes_schema(){
-		return parent::notes_schema();
-	}
+    public function notes_schema()
+    {
+        return parent::notes_schema();
+    }
 
-	public function create_form($subject_id, $aspect_type_id=null){
-		$output = $this->display_aspect() . '<hr />';
-    $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => true]);
-    $form .= \BootForm::hidden('subject_id', $subject_id);
-    $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
-    $form .= \BootForm::text('title', 'Title');
-    $form .= \BootForm::hidden('aspect_data', 'Aspect Data');
-    $form .= \BootForm::hidden('aspect_source');
-    $form .= \BootForm::hidden('hidden', 'Hidden?');
-    $form .= \BootForm::hidden('file_upload');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
-		$output .= $form;
-    return $output;
-	}
-	public function edit_form($id){
-		$output = $this->display_aspect() . '<hr />';
-    $aspect = Aspect::find($id);
-    $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
-    $form .= \BootForm::hidden('aspect_id', $aspect->id);
-    $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
-    $form .= \BootForm::hidden('title', 'Title', $aspect->title);
-    $form .= \BootForm::hidden('aspect_data', 'Aspect Data', $aspect->aspect_data);
-    $form .= \BootForm::hidden('aspect_source', 'Source', $aspect->aspect_source);
-    $form .= \BootForm::hidden('hidden', 'Hidden?', $aspect->hidden);
-    $form .= \BootForm::hidden('file_upload');
-    $form .= $this->notes_fields();
-    $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-    $form .= \BootForm::close();
-    return $form;
+    public function create_form($subject_id, $aspect_type_id = null)
+    {
+        $output = $this->display_aspect() . '<hr />';
+        $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('subject_id', $subject_id);
+        $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
+        $form .= \BootForm::text('title', 'Title');
+        $form .= \BootForm::hidden('aspect_data', 'Aspect Data');
+        $form .= \BootForm::hidden('aspect_source');
+        $form .= \BootForm::hidden('hidden', 'Hidden?');
+        $form .= \BootForm::hidden('file_upload');
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        $output .= $form;
         return $output;
-	}
-	public function display_aspect(){
-		$output = $this->lambda_function();
-		return $output;
-	}
+    }
+    public function edit_form($id)
+    {
+        $output = $this->display_aspect() . '<hr />';
+        $aspect = Aspect::find($id);
+        $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('aspect_id', $aspect->id);
+        $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
+        $form .= \BootForm::hidden('title', 'Title', $aspect->title);
+        $form .= \BootForm::hidden('aspect_data', 'Aspect Data', $aspect->aspect_data);
+        $form .= \BootForm::hidden('aspect_source', 'Source', $aspect->aspect_source);
+        $form .= \BootForm::hidden('hidden', 'Hidden?', $aspect->hidden);
+        $form .= \BootForm::hidden('file_upload');
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
+        return $output;
+    }
+    public function display_aspect()
+    {
+        $output = $this->lambda_function();
+        return $output;
+    }
 
-	public function parse(){
+    public function parse()
+    {
                 parent::parse();
-        }
+    }
 
 
-	public function lambda_function(){
-		return 'lambda_function output';
-	}
+    public function lambda_function()
+    {
+        return 'lambda_function output';
+    }
 }  // End of the LamdaFunctionAspectclass.
 
 class MarkdownTextAspect extends UnformattedTextAspect
@@ -273,52 +307,53 @@ class MarkdownTextAspect extends UnformattedTextAspect
         $output = $markdown_converter->convertToHtml($this->aspect_data);
         return $output;
     }
-    public function parse(){
+    public function parse()
+    {
                 parent::parse();
-        }
-
+    }
 }  // End of the MarkdownTextAspectclass.
 
 class FormattedTextAspect extends UnformattedTextAspect
 {
     public function create_form($subject_id, $aspect_type_id = null)
     {
-      $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => false]);
-      $form .= \BootForm::hidden('subject_id', $subject_id);
-      $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
-      $form .= \BootForm::text('title', 'Title');
-      $form .= \BootForm::textarea('aspect_data', 'Formatted Text', '', ['class' => 'wysiwyg_editor', 'style' => 'width:100%;']);
-      $form .= \BootForm::text('aspect_source', 'Source');
+        $form = \BootForm::horizontal(['url' => '/aspect/create', 'method' => 'post', 'files' => false]);
+        $form .= \BootForm::hidden('subject_id', $subject_id);
+        $form .= \BootForm::hidden('aspect_type', $aspect_type_id);
+        $form .= \BootForm::text('title', 'Title');
+        $form .= \BootForm::textarea('aspect_data', 'Formatted Text', '', ['class' => 'wysiwyg_editor', 'style' => 'width:100%;']);
+        $form .= \BootForm::text('aspect_source', 'Source');
       //$form .= \BootForm::file('file_upload');
-      $form .= $this->notes_fields();
-      $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-      $form .= \BootForm::close();
-      return $form;
-  	}
-  	public function edit_form($id){
-      $aspect = Aspect::find($id);
-      $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
-      $form .= \BootForm::hidden('aspect_id', $aspect->id);
-      $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
-      $form .= \BootForm::text('title', 'Title', $aspect->title);
-      $form .= \BootForm::textarea('aspect_data', 'Formatted Text', $aspect->aspect_data, ['class' => 'wysiwyg_editor', 'style' => 'width:100%;']);
-      $form .= \BootForm::text('aspect_source', 'Source', $aspect->aspect_source);
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
+    }
+    public function edit_form($id)
+    {
+        $aspect = Aspect::find($id);
+        $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
+        $form .= \BootForm::hidden('aspect_id', $aspect->id);
+        $form .= \BootForm::hidden('aspect_type', $aspect->aspect_type()->id);
+        $form .= \BootForm::text('title', 'Title', $aspect->title);
+        $form .= \BootForm::textarea('aspect_data', 'Formatted Text', $aspect->aspect_data, ['class' => 'wysiwyg_editor', 'style' => 'width:100%;']);
+        $form .= \BootForm::text('aspect_source', 'Source', $aspect->aspect_source);
       //$form .= \BootForm::checkbox('hidden', 'Hidden?', $aspect->hidden);
       //$form .= \BootForm::file('file_upload');
-      $form .= $this->notes_fields();
-      $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
-      $form .= \BootForm::close();
-      return $form;
-  	}
+        $form .= $this->notes_fields();
+        $form .= \BootForm::submit('Submit', ['class' => 'btn btn-primary']);
+        $form .= \BootForm::close();
+        return $form;
+    }
     public function display_aspect()
     {
         $output = parent::display_aspect();
         return $this->aspect_data;
     }
-    public function parse(){
+    public function parse()
+    {
                 parent::parse();
-        }
-
+    }
 }  // End of the FormattedTextAspectclass.
 
 class RelationshipAspect extends Aspect
@@ -341,9 +376,9 @@ class RelationshipAspect extends Aspect
 
     public function notes_schema()
     {
-      $settings = json_decode(parent::notes_schema(), true);
-      $settings['reciprocal_aspect_id'] = '';
-      return json_encode($settings);
+        $settings = json_decode(parent::notes_schema(), true);
+        $settings['reciprocal_aspect_id'] = '';
+        return json_encode($settings);
     }
     public function create_form($subject_id, $aspect_type_id = null)
     {
@@ -407,26 +442,26 @@ class RelationshipAspect extends Aspect
     {
         // Let's check to see if there's a reciprocal aspect.
         $settings = $this->get_aspect_notes_array();
-        if (empty($settings['reciprocal_aspect_id'])){
+        if (empty($settings['reciprocal_aspect_id'])) {
 
-          Log::info('Creating a reciprocal relationship aspect.');
+            Log::info('Creating a reciprocal relationship aspect.');
 
-          $target = Subject::where('name', '=', $this->aspect_source)->first();
-          $this_subject = $this->subjects()->first();
+            $target = Subject::where('name', '=', $this->aspect_source)->first();
+            $this_subject = $this->subjects()->first();
 
-          $new_aspect = AspectFactory::make_from_aspect_type($this->aspect_type);
-          $new_aspect->aspect_source = $this_subject->name;
-          $new_aspect->aspect_data = $this->aspect_data;
-          $new_aspect->aspect_notes = ['reciprocal_aspect_id' => $this->id];
-          $new_aspect->user = $this->user;
-          $new_aspect->save();
-          $target->aspects()->attach($new_aspect->id);
-          $settings['reciprocal_aspect_id'] = $new_aspect->id;
-          $this->aspect_notes = $settings;
-          $this->save();
+            $new_aspect = AspectFactory::make_from_aspect_type($this->aspect_type);
+            $new_aspect->aspect_source = $this_subject->name;
+            $new_aspect->aspect_data = $this->aspect_data;
+            $new_aspect->aspect_notes = ['reciprocal_aspect_id' => $this->id];
+            $new_aspect->user = $this->user;
+            $new_aspect->save();
+            $target->aspects()->attach($new_aspect->id);
+            $settings['reciprocal_aspect_id'] = $new_aspect->id;
+            $this->aspect_notes = $settings;
+            $this->save();
 
         } else {
-          return;
+            return;
         }
     }
     public function pre_update(Request &$request)
@@ -440,15 +475,15 @@ class RelationshipAspect extends Aspect
     public function pre_delete(Request &$request)
     {
       // If we are deleting one end of the relationship, we also want to delete the other end.
-      $settings = $this->get_aspect_notes_array();
-      Aspect::where('id', $settings['reciprocal_aspect_id'])->delete();
+        $settings = $this->get_aspect_notes_array();
+        Aspect::where('id', $settings['reciprocal_aspect_id'])->delete();
     }
 
 
-    public function parse(){
+    public function parse()
+    {
                 parent::parse();
-        }
-
+    }
 }  // End of the RelationshipAspectclass.
 
 /*  -- End Basic Aspect Types -- */
