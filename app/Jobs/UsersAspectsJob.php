@@ -41,19 +41,19 @@ class UsersAspectsJob implements ShouldQueue
      */
     public function handle()
     {
-      Log::info("UsersAspectJob for User#{$this->user->id} Start.");
-      try{
-        Auth::loginUsingId($this->user->id, true);
-        $aspects = Aspect::where('user', '=', $this->user->id)->get();
-        Log::info('I count: '.$aspects->count() .' Aspects for user:'.$this->user->id);
-        foreach ($aspects as $aspect) {
-          Log::info('This one looks like a '.get_class ($aspect));
-          ParseAspectJob::dispatch($aspect);
-          Log::info("Enqueued ParseAspectJob for Aspect# ".$aspect->id);
+        Log::info("UsersAspectJob for User#{$this->user->id} Start.");
+        try {
+            Auth::loginUsingId($this->user->id, true);
+            $aspects = Aspect::where('user', '=', $this->user->id)->get();
+            Log::info('I count: '.$aspects->count() .' Aspects for user:'.$this->user->id);
+            foreach ($aspects as $aspect) {
+                Log::info('This one looks like a '.get_class($aspect));
+                ParseAspectJob::dispatch($aspect);
+                Log::info("Enqueued ParseAspectJob for Aspect# ".$aspect->id);
+            }
+        } catch (Exception $e) {
+            Log::info(var_export($e, true));
         }
-      } catch (Exception $e ){
-        Log::info(var_export($e, true));
-      }
-      Log::info("UsersAspectJob for User# " .$this->user->id. " End.");
+        Log::info("UsersAspectJob for User# " .$this->user->id. " End.");
     }
 }
