@@ -39,7 +39,7 @@ class WebScraperAspect extends \App\LamdaFunctionAspect{
 		$output .= $form;
         return $output;
 	}
-	public function edit_form($id){
+	public function edit_form(){
 		$output = $this->display_aspect() . '<hr />';
 		$form = \BootForm::open(['url' => '/aspect/'.$this->id.'/edit', 'method' => 'post', 'files' => false]);
 		$form .= \BootForm::hidden('subject_id', $this->subject_id);

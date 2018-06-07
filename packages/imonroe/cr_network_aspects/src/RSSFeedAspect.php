@@ -27,7 +27,7 @@ class RSSFeedAspect extends WebpageAspect{
 		return parent::create_form($subject_id, $this->aspect_type);
 	}
 
-	public function edit_form($id){
+	public function edit_form(){
 		return parent::edit_form($id);
 	}
 

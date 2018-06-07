@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
+@php
+  
+    $users = \App\User::all();
+    $user_count = $users->count();
+    if ($users->isEmpty()){
+        $show_form = true;
+    } else {
+        $show_form = false;
+    }
+
+@endphp
 
 @section('content')
 <div class="panel panel-default" style="margin-left:.6em; margin-right:.6em;">
@@ -8,6 +19,8 @@
   </div>
 
   <div class="panel-body">
+
+        @if ($show_form)
         <form method="POST" action="{{ route('register') }}">
                 @csrf
 
@@ -68,7 +81,15 @@
                         </button>
                     </div>
                 </div>
-            </form>
+        </form>
+        @else
+            <div>
+                <h2>Already registered.</h2>
+                <p>This version of Coldreader is optimized for a single user, and a user has already been registered.</p>
+                <p>If you want to change your password, you may <a href="/password/reset">do so at this link.</a></p>
+            </div>
+        @endif
+
   </div>
 </div>
 @endsection
