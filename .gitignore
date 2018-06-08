@@ -12,4 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 .env.dusk.local
+.env*
 /.env.BAK
