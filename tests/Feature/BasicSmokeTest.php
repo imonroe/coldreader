@@ -33,4 +33,9 @@ class BasicSmokeTest extends TestCase
         $response = $this->get('/login');
         $response->assertStatus(200);
     }
+
+    public function test_ForgotPasswordLoadsTest(){
+        $response = $this->get('/password/reset');
+        $response->assertStatus(200);
+    }
 }

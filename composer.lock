@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1e6e67571e586eca136bc359d10f291",
+    "content-hash": "24802b0f16f61f0b890c627611c812f6",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.61.1",
+            "version": "3.61.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "527d7d10b30a2294686d146b0a12b587f28057b0"
+                "reference": "a6825e5d290b3dd95b5dee4c9456e64a60f6a38b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/527d7d10b30a2294686d146b0a12b587f28057b0",
-                "reference": "527d7d10b30a2294686d146b0a12b587f28057b0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a6825e5d290b3dd95b5dee4c9456e64a60f6a38b",
+                "reference": "a6825e5d290b3dd95b5dee4c9456e64a60f6a38b",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-06-05T22:44:12+00:00"
+            "time": "2018-06-07T22:10:20+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1041,16 +1041,16 @@
         },
         {
             "name": "imonroe/ana",
-            "version": "1.0.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/ana.git",
-                "reference": "81796498a7742be0e9068a2c1ce66dca41921575"
+                "reference": "6674279e8fcb56f64c37267ea6e56618eec96e47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/ana/zipball/81796498a7742be0e9068a2c1ce66dca41921575",
-                "reference": "81796498a7742be0e9068a2c1ce66dca41921575",
+                "url": "https://api.github.com/repos/imonroe/ana/zipball/6674279e8fcb56f64c37267ea6e56618eec96e47",
+                "reference": "6674279e8fcb56f64c37267ea6e56618eec96e47",
                 "shasum": ""
             },
             "require": {
@@ -1071,7 +1071,22 @@
                     "imonroe\\ana\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "imonroe\\ana\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "check-style": [
+                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ],
+                "fix-style": [
+                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -1089,20 +1104,24 @@
                 "ana",
                 "imonroe"
             ],
-            "time": "2018-03-16T18:37:57+00:00"
+            "support": {
+                "source": "https://github.com/imonroe/ana/tree/master",
+                "issues": "https://github.com/imonroe/ana/issues"
+            },
+            "time": "2018-06-07T22:50:38+00:00"
         },
         {
             "name": "imonroe/crps",
-            "version": "1.2.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/crps.git",
-                "reference": "5c696ba02fbb28b3922e5727654191abb8cd2b1e"
+                "reference": "0ae6e8ad98b31fe42e45d8bf04684c18e84d4835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imonroe/crps/zipball/5c696ba02fbb28b3922e5727654191abb8cd2b1e",
-                "reference": "5c696ba02fbb28b3922e5727654191abb8cd2b1e",
+                "url": "https://api.github.com/repos/imonroe/crps/zipball/0ae6e8ad98b31fe42e45d8bf04684c18e84d4835",
+                "reference": "0ae6e8ad98b31fe42e45d8bf04684c18e84d4835",
                 "shasum": ""
             },
             "require": {
@@ -1121,8 +1140,16 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
+                "laravel": {
+                    "providers": [
+                        "imonroe\\crps\\crpsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Aspect": "imonroe\\crps\\Aspect",
+                        "AspectType": "imonroe\\crps\\AspectType",
+                        "Subject": "imonroe\\crps\\Subject",
+                        "SubjectType": "imonroe\\crps\\SubjectType"
+                    }
                 }
             },
             "autoload": {
@@ -1130,7 +1157,22 @@
                     "imonroe\\crps\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "imonroe\\crps\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "check-style": [
+                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ],
+                "fix-style": [
+                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ]
+            },
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -1148,7 +1190,11 @@
                 "crps",
                 "imonroe"
             ],
-            "time": "2018-05-21T00:28:55+00:00"
+            "support": {
+                "source": "https://github.com/imonroe/crps/tree/master",
+                "issues": "https://github.com/imonroe/crps/issues"
+            },
+            "time": "2018-06-07T22:55:37+00:00"
         },
         {
             "name": "imonroe/mimeutils",
@@ -4053,6 +4099,66 @@
             "time": "2017-07-22T11:58:36+00:00"
         },
         {
+            "name": "facebook/webdriver",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-webdriver.git",
+                "reference": "bd8c740097eb9f2fc3735250fc1912bc811a954e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/bd8c740097eb9f2fc3735250fc1912bc811a954e",
+                "reference": "bd8c740097eb9f2fc3735250fc1912bc811a954e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-zip": "*",
+                "php": "^5.6 || ~7.0",
+                "symfony/process": "^2.8 || ^3.1 || ^4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "php-coveralls/php-coveralls": "^2.0",
+                "php-mock/php-mock-phpunit": "^1.1",
+                "phpunit/phpunit": "^5.7",
+                "sebastian/environment": "^1.3.4 || ^2.0 || ^3.0",
+                "squizlabs/php_codesniffer": "^2.6",
+                "symfony/var-dumper": "^3.3 || ^4.0"
+            },
+            "suggest": {
+                "ext-SimpleXML": "For Firefox profile creation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-community": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\WebDriver\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A PHP client for Selenium WebDriver",
+            "homepage": "https://github.com/facebook/php-webdriver",
+            "keywords": [
+                "facebook",
+                "php",
+                "selenium",
+                "webdriver"
+            ],
+            "time": "2018-05-16T17:37:13+00:00"
+        },
+        {
             "name": "filp/whoops",
             "version": "2.2.0",
             "source": {
@@ -4210,6 +4316,67 @@
                 "test"
             ],
             "time": "2016-01-20T08:20:44+00:00"
+        },
+        {
+            "name": "laravel/dusk",
+            "version": "v3.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/dusk.git",
+                "reference": "c6201427e63b869b0c1ee83d91c1d1958b71968e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/c6201427e63b869b0c1ee83d91c1d1958b71968e",
+                "reference": "c6201427e63b869b0c1ee83d91c1d1958b71968e",
+                "shasum": ""
+            },
+            "require": {
+                "facebook/webdriver": "~1.0",
+                "illuminate/console": "~5.6",
+                "illuminate/support": "~5.6",
+                "nesbot/carbon": "~1.20",
+                "php": ">=7.1.0",
+                "symfony/console": "~4.0",
+                "symfony/process": "~4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Dusk\\DuskServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Dusk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Dusk provides simple end-to-end testing and browser automation.",
+            "keywords": [
+                "laravel",
+                "testing",
+                "webdriver"
+            ],
+            "time": "2018-04-29T19:15:23+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -5693,7 +5860,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "imonroe/ana": 20,
+        "imonroe/crps": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
