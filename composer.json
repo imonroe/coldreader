@@ -6,11 +6,15 @@
     "repositories":[
         {
             "type": "vcs",
-            "url": "https://github.com/imonroe/ana"
+            "url": "https://github.com/imonroe/ana.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/imonroe/crps"
+            "url": "https://github.com/imonroe/crps.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/imonroe/coldreader.git"
         }
     ],
     "require": {
