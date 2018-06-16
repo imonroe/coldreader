@@ -85,7 +85,7 @@ class ColdreaderInsaller extends Command
         file_put_contents('.env', $env);
         Ana::say('File written');
 
-        Ana::execute('composer install');
+        //Ana::execute('composer install');
         Ana::execute('php artisan key:generate');
 
         Ana::execute('php artisan migrate');
