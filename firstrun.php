@@ -4,14 +4,16 @@
 
   function run_process( $cmd){
     $descriptors = array(
-      0 => array('file', '/dev/tty', 'r'),  // stdin is a pipe that the child will read from
-      1 => array('file', '/dev/tty', "w"),  // stdout is a pipe that the child will write to
-      2 => array('file', '/dev/tty', "w") // stderr is a file to write to
+      0 => array ("file", "php://stdin", "r"),
+      1 => array ("pipe", "w"),
+      2 => array ("pipe", "w")
     );
     $process = proc_open($cmd, $descriptors, $pipes);
     if (is_resource($process)) {
       echo stream_get_contents($pipes[1]);
       fclose($pipes[1]);
+      fclose($pipes[0]);
+      fclose($pipes[2]);
       $return_value = proc_close($process);
       echo "command returned $return_value\n";
     }
