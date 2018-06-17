@@ -10,8 +10,6 @@
     );
     $process = proc_open($cmd, $descriptors, $pipes);
     if (is_resource($process)) {
-      echo stream_get_contents($pipes[1]);
-      fclose($pipes[1]);
       $return_value = proc_close($process);
       echo "command returned $return_value\n";
     }
@@ -25,5 +23,5 @@
     run_process('composer install --no-dev --no-suggest --no-scripts');
   }
   echo('Now we will run the setup script.'.PHP_EOL.PHP_EOL);
-  run_process('artisan coldreader:install');
+  run_process('php artisan coldreader:install');
 ?>
