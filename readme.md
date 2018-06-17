@@ -1,8 +1,6 @@
 # Coldreader
 
-Coldreader is a personal information management system. It's primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.6, Bootstrap 3, and Vue.js.
-
-This is the open-source version.  It is configured to support a single user, and includes some tools to make it easy to customize the system for your own uses.
+Coldreader is a casual, personal databasing system. 
 
 It may be helpful to think of it as something half-way between an mindmap and a private wiki.  I use it in place of Evernote, as a personal information management tool. Out of the box, it may seem a little trivial, but once you start building it out with your own custom Aspects, you'll find that there's really no other tool like it.
 
@@ -10,18 +8,21 @@ It makes no assumptions about what kind of information you want to keep track.  
 
 A Subject can have an arbitrary number of Aspects.  Aspects are like a single piece of content.  That may be text, an image, an API result, and so forth.  By itself, a basic Aspect just stores its information as text in the database.  But you can extend simple aspects with a little bit of code so that they can behave however you like.  When you create a Custom Aspect Type, Coldreader will automatically add boilerplate code for your new overridden Aspect into the app/CustomAspects.php file.  By modifying the boilerplate with your own custom logic, you can retrieve API results, perform a calculation, whatever you like.  For more information, see Developing Custom Aspects below.
 
+Coldreader is primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.6, Bootstrap 3, and Vue.js.
+
+This is the open-source version.  It is configured to support a single user, and includes some tools to make it easy to customize the system for your own uses.
+
 Use cases:
 
 - Project management system
-- TODO list
-- Personal CRM system -- stop forgetting your girlfriend's parents names, your friend's anniversary, etc.
+- Personal CRM system
+- Build custom dashboards to track subjects of interest
 - Manage your collection of media
 - Track your notes and references as you research new things
 - Create a knowledgebase of problems you have previously solved
 - Keep a library of your favorite recipes
 - API test bed - quickly add new features by implementing an API and using your exising data
-- Organize your life however you like
-
+- Organize your data however you like
 
 ## Dependencies 
 - PHP 7.2+
@@ -65,6 +66,21 @@ $ php cr_configure.php
 Follow the prompts.
 
 The configuration script will ask if you'd like to install the npm dependencies. If you are planning on developing with Coldreader, you may want to do that now.  It can take some time, however, and can safely be skipped if you're just trying out the software.
+
+### Installing additional add-ons
+
+One of the nice things about Coldreader is that it's easy to create new Aspect Types and Search Providers to accomodate different kinds of data, and different ways of displaying it. There are some Aspect Types already available to try.
+
+To install Coldreader add-on packages, use composer:
+``` bash
+$ composer require <vendor>/<package_name>
+$ composer update
+```
+Some add-on packages may require additional configuration. Consult the package repo for details for any individual add-on.
+
+#### Add-ons currently available:
+- COMING SOON!
+
 
 ## Developing with Coldreader
 For instructions and examples for how to get started developing with Coldreader, [please see the wiki.](https://github.com/imonroe/coldreader/wiki)
