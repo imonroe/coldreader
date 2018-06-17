@@ -104,6 +104,7 @@ class ColdreaderInsaller extends Command
         }
         
         Ana::execute('php artisan package:discover');
+        Ana::execute('rm firstrun.php');
 
         Ana::say('Completed post-installation script.  Enjoy the software!');
         exit();
