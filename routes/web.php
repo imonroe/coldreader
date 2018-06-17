@@ -16,13 +16,14 @@ Auth::routes();
 //Route::redirect('/', '/home', 301);
 
 Route::get('/', function(){
-	$users = User::all();
-	$user_count = $users->count();
-	if ($user_count = 0){
-		return view('auth.register');
-	} else {
-		return redirect()->route('home');
-	}
+
+	$users = \App\User::all();
+    $user_count = $users->count();
+    if ($users->isEmpty()){
+        return redirect('register');
+    }
+	return redirect()->route('home');
+	
 });
 
 Route::get('/logout', function(){

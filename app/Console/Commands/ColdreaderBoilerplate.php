@@ -14,7 +14,7 @@ class ColdreaderBoilerplate extends Command
      *
      * @var string
      */
-    protected $signature = 'coldreader:new {type : may be [aspect_type|search_provider]}';
+    protected $signature = 'coldreader:new {type : may be [aspect_type]}';
 
     /**
      * The console command description.

@@ -223,10 +223,6 @@ return [
       	'HTML'     => Collective\Html\HtmlFacade::class,
       	'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
       	'Ana' 	=> imonroe\ana\Ana::class,
-      	'Aspect' => imonroe\crps\Aspect::class,
-      	'AspectType' => imonroe\crps\AspectType::class,
-      	'Subject' => imonroe\crps\Subject::class,
-	    'SubjectType' => imonroe\crps\SubjectType::class,
 
         'APIResultAspect' => imonroe\cr_network_aspects\APIResultAspect::class,
         'RSSFeedAspect' => imonroe\cr_network_aspects\RSSFeedAspect::class,

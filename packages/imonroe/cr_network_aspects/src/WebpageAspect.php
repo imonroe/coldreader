@@ -24,7 +24,7 @@ class WebpageAspect extends Aspect{
     $form .= \BootForm::close();
     return $form;
 	}
-	public function edit_form($id){
+	public function edit_form(){
 		$current_aspect = Aspect::find($id);
 		$form = \BootForm::open(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => false]);
 		$form .= \BootForm::hidden('subject_id', $current_aspect->subjects()->first()->id);

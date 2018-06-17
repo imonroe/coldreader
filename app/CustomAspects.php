@@ -37,7 +37,7 @@ class DefaultAspect extends Aspect
         return parent::create_form($subject_id, $aspect_type_id);
     }
 
-    public function edit_form($id)
+    public function edit_form()
     {
         return parent::edit_form($id);
     }
@@ -72,7 +72,7 @@ class FileUploadAspect extends Aspect
         $form .= \BootForm::close();
         return $form;
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         $media_items = $this->media;
         $output = '<h3>Currently attached files:</h3>';
@@ -133,7 +133,7 @@ class ImageAspect extends FileUploadAspect
     {
         return parent::create_form($subject_id, $this->aspect_type);
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         return parent::edit_form($id);
     }
@@ -198,7 +198,7 @@ class UnformattedTextAspect extends Aspect
         $form .= \BootForm::close();
         return $form;
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         $aspect = Aspect::find($id);
         $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
@@ -255,7 +255,7 @@ class LamdaFunctionAspect extends Aspect
         $output .= $form;
         return $output;
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         $output = $this->display_aspect() . '<hr />';
         $aspect = Aspect::find($id);
@@ -297,7 +297,7 @@ class MarkdownTextAspect extends UnformattedTextAspect
     {
         return parent::create_form($subject_id, $this->aspect_type);
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         return parent::edit_form($id);
     }
@@ -329,7 +329,7 @@ class FormattedTextAspect extends UnformattedTextAspect
         $form .= \BootForm::close();
         return $form;
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         $aspect = Aspect::find($id);
         $form = \BootForm::horizontal(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => true]);
@@ -393,7 +393,7 @@ class RelationshipAspect extends Aspect
         $form .= \BootForm::close();
         return $form;
     }
-    public function edit_form($id)
+    public function edit_form()
     {
         $current_aspect = Aspect::find($id);
         $form = \Form::open(['url' => '/aspect/'.$id.'/edit', 'method' => 'post', 'files' => false]);

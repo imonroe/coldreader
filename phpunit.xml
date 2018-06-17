@@ -11,13 +11,13 @@
     <testsuites>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
+            <directory suffix="Test.php">./vendor/imonroe/crps/tests</directory>
         </testsuite>
 
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
             <directory suffix="Test.php">./vendor/imonroe/ana/tests</directory>
-            <directory suffix="Test.php">./vendor/imonroe/crps/tests</directory>
-            <directory suffix="Test.php">./vendor/imonroe/mimutils/tests</directory>
+            <directory suffix="Test.php">./vendor/imonroe/mimeutils/tests</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -31,5 +31,6 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="MAIL_DRIVER" value="array"/>
+        <env name="DB_DEFAULT" value="sqlite_testing" />
     </php>
 </phpunit>
