@@ -1,12 +1,12 @@
 # Coldreader
 
-Coldreader is a casual, personal databasing system. 
+Coldreader is a casual, personal databasing system.  
 
 It may be helpful to think of it as something half-way between an mindmap and a private wiki.  I use it in place of Evernote, as a personal information management tool. Out of the box, it may seem a little trivial, but once you start building it out with your own custom Aspects, you'll find that there's really no other tool like it.
 
 It makes no assumptions about what kind of information you want to keep track.  In Coldreader, there are essentially two kinds of things: Subjects, and Aspects.
 
-A Subject can have an arbitrary number of Aspects.  Aspects are like a single piece of content.  That may be text, an image, an API result, and so forth.  By itself, a basic Aspect just stores its information as text in the database.  But you can extend simple aspects with a little bit of code so that they can behave however you like.  When you create a Custom Aspect Type, Coldreader will automatically add boilerplate code for your new overridden Aspect into the app/CustomAspects.php file.  By modifying the boilerplate with your own custom logic, you can retrieve API results, perform a calculation, whatever you like.  For more information, see Developing Custom Aspects below.
+A Subject can contain an arbitrary number of Aspects.  Aspects are like a single piece of content.  That may be text, an image, an API result, and so forth.  By itself, a basic Aspect just stores its information as text in the database.  But you can extend simple aspects with a little bit of code so that they can behave however you like. By modifying the boilerplate with your own logic, you can retrieve API results, perform a calculation, whatever you like.  For more information, see Developing Custom Aspects below.
 
 Coldreader is primarily aimed at people who are comfortable with basic web development using PHP and Javascript. It's built using Laravel 5.6, Bootstrap 3, and Vue.js.
 
