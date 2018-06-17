@@ -5,8 +5,8 @@
   function run_process( $cmd){
     $descriptors = array(
       0 => array('file', '/dev/tty', 'r'),  // stdin is a pipe that the child will read from
-      1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
-      2 => array("pipe", "w") // stderr is a file to write to
+      1 => array('file', '/dev/tty', "w"),  // stdout is a pipe that the child will write to
+      2 => array('file', '/dev/tty', "w") // stderr is a file to write to
     );
     $process = proc_open($cmd, $descriptors, $pipes);
     if (is_resource($process)) {
