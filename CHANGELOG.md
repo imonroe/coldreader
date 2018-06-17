@@ -16,7 +16,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Added a quicky artisan command for running migrations on the system within a Docker container, to facilitate testing with Docker.
 
 ### Deprecated
-- Since this is the first stable version with a working installer, all previous versions are deprecated.
+- Nothing
 
 ### Fixed
 - Corrected method signatures for Aspects edit_form method
