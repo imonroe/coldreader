@@ -8,7 +8,7 @@
     $process = proc_open($cmd, $descriptors, $pipes);
     if (is_resource($process)) {
       $return_value = proc_close($process);
-      echo "command returned $return_value\n";
+      //echo "command returned $return_value\n";
     }
   }
 
