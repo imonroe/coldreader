@@ -20,5 +20,8 @@
     run_interactive('composer install --no-dev --no-suggest --no-scripts');
   }
   echo('Now we will run the setup script.'.PHP_EOL.PHP_EOL);
-  run_interactive('php artisan coldreader:install');
+  echo('Simply run this command:'.PHP_EOL);
+  echo('`php artisan coldreader:install`'.PHP_EOL);
+  echo('to complete the installation.'.PHP_EOL.PHP_EOL)
+  // run_interactive('`php artisan coldreader:install`');
 ?>
