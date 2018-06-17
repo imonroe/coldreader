@@ -89,8 +89,8 @@ class ColdreaderInsaller extends Command
         Ana::execute('php artisan key:generate');
 
         Ana::execute('php artisan migrate');
-        Ana::execute('php artisan storage:link');
-
+        $is_linked = Ana::execute('php artisan storage:link');
+        Ana::say('The return value on that was: '.$is_linked);
         if ($npm == 'y'){
             Ana::execute('npm install');
             Ana::execute('npm run production');
