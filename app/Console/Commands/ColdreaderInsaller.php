@@ -103,6 +103,8 @@ class ColdreaderInsaller extends Command
             Ana::execute('npm run production');
         }
         
+        Ana::execute('php artisan package:discover');
+
         Ana::say('Completed post-installation script.  Enjoy the software!');
         exit();
 
