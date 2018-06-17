@@ -48,10 +48,6 @@ The simple way to install everything is to use Composer.  If you plan on develop
 $ cd /wherever/you/want/to/install/
 $ composer create-project imonroe/coldreader .
 ```
-Wait for the installation to complete. Then run: 
-``` bash
-$ php cr_configure.php
-```
 Follow the prompts.  
 
 ### Via Git
@@ -61,7 +57,7 @@ $ git clone https://github.com/imonroe/coldreader.git .
 ```
 Wait for the installation to complete. Then run: 
 ``` bash
-$ php cr_configure.php
+$ php firstrun.php
 ```
 Follow the prompts.
 
