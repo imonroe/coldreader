@@ -5,15 +5,13 @@
   function run_process( $cmd){
     $descriptors = array(
       0 => array ("file", "php://stdin", "r"),
-      1 => array ("pipe", "w"),
-      2 => array ("pipe", "w")
+      1 => array ("file", "php://stdout", "w"),
+      2 => array ("file", "php://stdout", "w")
     );
     $process = proc_open($cmd, $descriptors, $pipes);
     if (is_resource($process)) {
       echo stream_get_contents($pipes[1]);
       fclose($pipes[1]);
-      fclose($pipes[0]);
-      fclose($pipes[2]);
       $return_value = proc_close($process);
       echo "command returned $return_value\n";
     }
