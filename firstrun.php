@@ -1,8 +1,5 @@
 <?php
-  
-  
-
-  function run_process( $cmd){
+  function run_interactive( $cmd){
     $descriptors = array(
       0 => array ("file", "php://stdin", "r"),
       1 => array ("file", "php://stdout", "w"),
@@ -20,8 +17,8 @@
   echo($msg);
   if (!file_exists('./vendor/imonroe/ana/src/Ana.php')){
     echo('Looks like you installed via git. First we will get the composer dependencies.'.PHP_EOL.PHP_EOL);
-    run_process('composer install --no-dev --no-suggest --no-scripts');
+    run_interactive('composer install --no-dev --no-suggest --no-scripts');
   }
   echo('Now we will run the setup script.'.PHP_EOL.PHP_EOL);
-  run_process('php artisan coldreader:install');
+  run_interactive('php artisan coldreader:install');
 ?>
