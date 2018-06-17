@@ -91,6 +91,13 @@ class ColdreaderInsaller extends Command
         Ana::execute('php artisan migrate');
         $is_linked = Ana::execute('php artisan storage:link');
         Ana::say('The return value on that was: '.$is_linked);
+
+        if ( strrpos($is_linked, 'Protocol error') > 0 ){
+            Ana::say('Looks like you are running a VM on Windows. Symlinking requires running Homestead as an admin. See also: https://stackoverflow.com/questions/39496598/laravel-5-3-storagelink-symlink-protocol-error');
+            Ana::say('Restart your virtual machine as an administrator and run: php artisan storage:link');
+            Ana::say('That should correct the error.');
+        }
+
         if ($npm == 'y'){
             Ana::execute('npm install');
             Ana::execute('npm run production');
