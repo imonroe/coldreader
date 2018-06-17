@@ -3,5 +3,4 @@
   $msg .= 'Thanks for trying out Coldreader!'.PHP_EOL;
   echo($msg);
   exec('composer install --no-dev --no-suggest');
-  exec('php artisan coldreader:install');
 ?>
