@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b81e0af2b96d4e991903e19395dbb5ed",
+    "content-hash": "7cbdb1fee28796886f4ebab29f97075f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1041,7 +1041,7 @@
         },
         {
             "name": "imonroe/ana",
-            "version": "dev-master",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/ana.git",
@@ -1112,7 +1112,7 @@
         },
         {
             "name": "imonroe/crps",
-            "version": "dev-master",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imonroe/crps.git",
@@ -5740,10 +5740,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "imonroe/ana": 20,
-        "imonroe/crps": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
