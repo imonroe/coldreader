@@ -11,7 +11,6 @@ use imonroe\crps\Aspect;
 use imonroe\crps\AspectFactory;
 use imonroe\crps\Subject;
 use imonroe\crps\Ana;
-use League\CommonMark\CommonMarkConverter;
 use Validator;
 
 class DefaultAspect extends Aspect{
@@ -76,17 +75,3 @@ class DefaultAspect extends Aspect{
     }
 
 }
-
-
-
-// ---------  Begin Custom Aspects -------------- //
-
-/*  -- Basic Aspect Types -- */
-
-/*  -- Begin App-specific Aspects -- */
-
-
-// ---------------------------------------------- //
-
-
-// ---------- End Custom Aspects ---------------- //
