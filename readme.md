@@ -1,6 +1,6 @@
 # Coldreader
 
-Coldreader is a casual, personal databasing system.  
+Coldreader is a casual, personal databasing system.
 
 It may be helpful to think of it as something half-way between an mindmap and a private wiki.  I use it in place of Evernote, as a personal information management tool. Out of the box, it may seem a little trivial, but once you start building it out with your own custom Aspects, you'll find that there's really no other tool like it.
 
@@ -19,55 +19,36 @@ Use cases:
 - Build custom dashboards to track subjects of interest
 - Manage your collection of media
 - Track your notes and references as you research new things
-- Create a knowledgebase of problems you have previously solved
+- Create a knowledge base of problems you have previously solved
 - Keep a library of your favorite recipes
-- API test bed - quickly add new features by implementing an API and using your exising data
+- API test bed - quickly add new features by implementing an API and using your existing data
 - Organize your data however you like
-
-## Dependencies 
-- PHP 7.2+
-- Composer (tested with version 1.6.4)
-If you're planning to develop with Coldreader, you'll need Node and NPM for Webpack/Vue.JS support.
-- Node.JS (tested with version 8.9.4)
-- npm (tested with version 5.6.0)
 
 ## Install
 
-Coldreader is based on [Laravel 5.6](https://laravel.com/), and requires a server that is capable of serving a Laravel project.
+Coldreader is based on [Laravel 5.6](https://laravel.com/), and requires a server that is capable of serving a Laravel project, or any machine with Docker and Docker Compose installed.
 
 For specific information about server requirements, [see the Laravel docs.](https://laravel.com/docs/5.6#server-requirements)
 
 The Homestead vagrant box works just fine with Coldreader, and you can try it out in your local environment with no risk. For more information about using Laravel Homestead, [check out their fantasic documentation.](https://laravel.com/docs/5.6/homestead)
 
-Once you have an environment set up, you'll want to create a directory to hold the project, and an empty database. Make sure you note the credentials you set up for the database to make installation easy.
-
-The simple way to install everything is to use Composer.  If you plan on developing with Coldreader, you are encouraged to use the Git method.
-
-### Via Composer:
-``` bash
-$ cd /wherever/you/want/to/install/
-$ composer create-project imonroe/coldreader .
-```
-Follow the prompts.  
-
-### Via Git
-``` bash
-$ cd /wherever/you/want/to/install/
-$ git clone https://github.com/imonroe/coldreader.git .
-```
-Wait for the installation to complete. Then run: 
-``` bash
-$ php firstrun.php
-```
-Follow the prompts.
-
-The configuration script will ask if you'd like to install the npm dependencies. If you are planning on developing with Coldreader, you may want to do that now.  It can take some time, however, and can safely be skipped if you're just trying out the software.
+### Via docker-compose
+By far, the easiest way to set up Coldreader on your local machine for development is to use the `docker-compose` file.  Naturally this requires Docker to be set up on the machine upon which you wish to run the software.
+- Clone the repo to a convenient location.
+- `cd` into the directory where you cloned the repo.
+- Edit the `.env` file to suit your preferences.
+- Run `docker-compose up`.  That will build the application stack.
+- It may take quite some time to build the stack the first time you run `docker-compose up`.  This is normal.  Subsequent builds will be faster.
+- The application will be available at: http://127.0.0.1.  You can access Adminer to manipulate the database at: http://127.0.0.1:8080
+- Need to run `artisan` commands?  Need to rebuild the assets with webpack?  You can do so within the docker container using the normal methods.  To get a `bash` shell:
+    - On a Windows system, just run `larabash.bat`
+    - On Macs and *nix-like systems, just run `docker-compose exec laravel bash`
 
 ### Installing additional add-ons
 
 One of the nice things about Coldreader is that it's easy to create new Aspect Types and Search Providers to accomodate different kinds of data, and different ways of displaying it. There are some Aspect Types already available to try.
 
-To install Coldreader add-on packages, use composer:
+To install Coldreader add-on packages, use composer within the application container:
 ``` bash
 $ composer require <vendor>/<package_name>
 $ composer update
@@ -86,8 +67,9 @@ For instructions and examples for how to get started developing with Coldreader,
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Testing
-
+From within `bash` in the application container:
 ``` bash
+$ cd application
 $ composer test
 ```
 

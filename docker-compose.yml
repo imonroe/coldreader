@@ -1,0 +1,78 @@
+version: "3.7"
+services:
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    container_name: ${COMPOSE_PROJECT_NAME}_laravel
+    command: ["/wait-for-it.sh", "${COMPOSE_PROJECT_NAME}_mysql:3306", "--", "/docker-entry.sh"]
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - APP_NAME=${COMPOSE_PROJECT_NAME}
+      - APP_ENV=local
+      - NODE_ENV=development
+      - DB_CONNECTION=mysql
+      - DB_HOST=${COMPOSE_PROJECT_NAME}_mysql
+      - DB_PORT=${MASTER_DB_PORT}
+      - DB_DATABASE=${MASTER_DB_DATABASE}
+      - DB_USERNAME=${MASTER_DB_USERNAME}
+      - DB_PASSWORD=${MASTER_DB_PASSWORD}
+      - REDIS_HOST=${COMPOSE_PROJECT_NAME}_redis_cache
+      - REDIS_PASSWORD=${MASTER_REDIS_PASSWORD}
+      - REDIS_PORT=${MASTER_REDIS_PORT}
+    volumes:
+      - ./application:/var/www
+      - ./configuration/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - confd:/etc/nginx/conf.d/
+      - vendor:/var/www/vendor
+      - node_modules:/var/www/node_modules
+    links:
+      - mysql
+    networks:
+      - network
+  mysql:
+    image: mysql:5.7.22
+    container_name: ${COMPOSE_PROJECT_NAME}_mysql
+    restart: always
+    # expose:
+    #   - 3306
+    environment:
+      - MYSQL_DATABASE=${MASTER_DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MASTER_MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MASTER_DB_USERNAME}
+      - MYSQL_PASSWORD=${MASTER_DB_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - ./configuration/mysql/low-memory-my.cnf:/etc/mysql/my.cnf
+      - ./dbdata/mysql:/var/lib/mysql
+    networks:
+      - network
+  adminer:
+    image: adminer
+    container_name: ${COMPOSE_PROJECT_NAME}_adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - network
+  redis:
+    image: redis
+    container_name: ${COMPOSE_PROJECT_NAME}_redis_cache
+    environment:
+      - ALLOW_EMPTY_PASSWORDS=yes
+    expose:
+      - 6379
+    networks:
+      - network
+volumes:
+  confd:
+  vendor:
+  node_modules:
+networks:
+  network:
+    driver: bridge

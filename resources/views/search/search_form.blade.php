@@ -1,2 +1,0 @@
-
-  <search-form></search-form>
