@@ -4,6 +4,9 @@ All Notable changes to Coldreader will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## 2.3.1 - 2019-11-22
+- Breaking changes since 2.2.1: Dockerized the application, changes to the folder structure, added support for CapRover deployments
+
 ## 2.2.1 - 2018-04-22
 - Breaking changes since 2.1.1.  Method signatures have changed for the Aspect type in the CRPS package, and I updated the basic aspect types to reflect it.
 
