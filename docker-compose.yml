@@ -28,6 +28,8 @@ services:
       - ./application:/var/www
       - ./configuration/php/local.ini:/usr/local/etc/php/conf.d/local.ini
       - confd:/etc/nginx/conf.d/
+      - vendor:/var/www/vendor
+      - node_modules:/var/www/node_modules
     links:
       - mysql
     networks:
@@ -69,6 +71,8 @@ services:
       - network
 volumes:
   confd:
+  vendor:
+  node_modules:
 networks:
   network:
     driver: bridge

@@ -12066,16 +12066,16 @@ window._ = __webpack_require__(52);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(12);
-  var jQueryBridget = __webpack_require__(53);
-  var Masonry = __webpack_require__(37);
-  // make Masonry a jQuery plugin
-  jQueryBridget('masonry', Masonry, window.$);
-  __webpack_require__(58);
-  //require('jquery-ui');
-  //require('jquery-ui-touch-punch');
+    window.$ = window.jQuery = __webpack_require__(12);
+    var jQueryBridget = __webpack_require__(53);
+    var Masonry = __webpack_require__(37);
+    // make Masonry a jQuery plugin
+    jQueryBridget('masonry', Masonry, window.$);
+    __webpack_require__(58);
+    //require('jquery-ui');
+    //require('jquery-ui-touch-punch');
 } catch (e) {
-  console.log(e);
+    console.log(e);
 }
 
 /**
