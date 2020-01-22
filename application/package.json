@@ -36,8 +36,8 @@
         "tls": "0.0.1",
         "underscore": "^1.8.3",
         "urijs": "^1.17.0",
-        "vue": "^2.6.11",
-        "vuejs-datepicker": "^0.9.26"
+        "vuejs-datepicker": "^1.5.4"
+        "vue": "^2.6.11"
     },
     "devDependencies": {
         "less": "^3.0.1",
