@@ -20,7 +20,7 @@
         "json-loader": "^0.5.7",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
-        "masonry-layout": "^4.2.0",
+        "masonry-layout": "^4.2.2",
         "moment": "^2.20.1",
         "moment-timezone": "^0.5.14",
         "net": "^1.0.2",
