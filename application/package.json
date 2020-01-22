@@ -35,14 +35,14 @@
         "tinymce": "^4.6.7",
         "tls": "0.0.1",
         "underscore": "^1.8.3",
-        "urijs": "^1.19.2",
-        "vue": "^2.5.7",
+        "urijs": "^1.17.0",
+        "vue": "^2.6.11",
         "vuejs-datepicker": "^0.9.26"
     },
     "devDependencies": {
         "less": "^3.0.1",
-        "less-loader": "^5.0.0",
-        "vue-template-compiler": "^2.5.16"
+        "less-loader": "^4.1.0",
+        "vue-template-compiler": "^2.6.11"
     },
     "optionalDependencies": {
         "feedparser": "^2.2.9"
