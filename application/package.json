@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "less": "^3.0.1",
-        "less-loader": "^4.1.0",
+        "less-loader": "^5.0.0",
         "vue-template-compiler": "^2.5.16"
     },
     "optionalDependencies": {
