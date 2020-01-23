@@ -1,20 +1,20 @@
 version: 1
 
-  - package_manager: "php:composer"
-    directory: "/application"
-    update_schedule: "daily"
-    target_branch: "automated_updates"
-    version_requirement_updates: "auto"
+- package_manager: "php:composer"
+  directory: "/application"
+  update_schedule: "daily"
+  target_branch: "automated_updates"
+  version_requirement_updates: "auto"
 
-  - package_manager: "javascript"
-    directory: "/application"
-    update_schedule: "daily"
-    target_branch: "automated_updates"
-    version_requirement_updates: "auto"
+- package_manager: "javascript"
+  directory: "/application"
+  update_schedule: "daily"
+  target_branch: "automated_updates"
+  version_requirement_updates: "auto"
 
-  - package_manager: "docker"
-    direcotry: "/"
-    update_schedule: "daily"
-    target_branch: "automated_updates"
+- package_manager: "docker"
+  direcotry: "/"
+  update_schedule: "daily"
+  target_branch: "automated_updates"
 
 
