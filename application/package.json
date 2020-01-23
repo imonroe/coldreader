@@ -12,7 +12,7 @@
         "bootstrap-sass": "^3.3.7",
         "cross-env": "^5.1",
         "element-ui": "^1.4.6",
-        "jquery": "^3.2",
+        "jquery": "^3.4",
         "jquery-bridget": "^2.0.1",
         "jquery-ui-dist": "^1.12.1",
         "jquery-ui-touch-punch": "0.2.3",
