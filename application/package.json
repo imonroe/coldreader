@@ -35,7 +35,7 @@
         "tinymce": "^4.6.7",
         "tls": "0.0.1",
         "underscore": "^1.8.3",
-        "urijs": "^1.17.0",
+        "urijs": "^1.19.4",
         "vue": "^2.5.7",
         "vuejs-datepicker": "^0.9.26"
     },
