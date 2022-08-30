@@ -22,7 +22,7 @@
         "lodash": "^4.17.4",
         "masonry-layout": "^4.2.0",
         "moment": "^2.20.1",
-        "moment-timezone": "^0.5.14",
+        "moment-timezone": "^0.5.35",
         "net": "^1.0.2",
         "node-sass": "^4.8.3",
         "popper.js": "^1.12",
